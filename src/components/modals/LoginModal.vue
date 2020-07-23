@@ -1,8 +1,12 @@
 <template>
     <transition name="fade">
         <div class="login-modal" v-if="active">
-            <div class="overlay" @click.self="closeModal"></div>
+            <div class="overlay"></div>
             <div class="login-modal__body">
+                <div
+                        class="login-modal__close-btn"
+                        @click.self="closeModal"
+                ></div>
                 <div class="login-modal__top">
                     <div class="login-modal__title">Вход</div>
                     <div class="login-modal__field">
@@ -95,7 +99,7 @@ export default {
         right: 0
         bottom: 0
         left: 0
-        background-color: #333333
+        background-color: $color-dark-grey
         opacity: .6
     .login-modal
         position: fixed
@@ -106,12 +110,40 @@ export default {
         display: flex
         align-items: center
         justify-content: center
+        &__close-btn
+            cursor: pointer
+            position: absolute
+            top: 10px
+            right: 10px
+            width: 32px
+            height: 32px
+            display: flex
+            align-items: center
+            &:before
+                content: ''
+                position: absolute
+                transform-origin: center
+                height: 32px
+                width: 1px
+                left: 15px
+                background-color: $color-dark-grey
+                transform: rotate(45deg)
+            &:after
+                content: ''
+                position: absolute
+                transform-origin: center
+                height: 32px
+                width: 1px
+                left: 15px
+                background-color: $color-dark-grey
+                transform: rotate(135deg)
         &__title
             text-align: center
             font-weight: 500
             font-size: 28px
             line-height: 33px
         &__body
+            position: relative
             z-index: 100
             padding: 36px
             background-color: #fff
@@ -138,7 +170,7 @@ export default {
                 float: left
                 margin-right: 8px
                 box-sizing: border-box
-                border: 1px solid #333333
+                border: 1px solid $color-dark-grey
                 border-radius: 4px
                 height: 16px
                 width: 16px

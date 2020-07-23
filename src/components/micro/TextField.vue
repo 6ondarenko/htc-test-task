@@ -50,5 +50,5 @@ export default {
             width: 100%
             outline: none
             border: none
-            border-bottom: 1px solid #333333
+            border-bottom: 1px solid $color-dark-grey
 </style>

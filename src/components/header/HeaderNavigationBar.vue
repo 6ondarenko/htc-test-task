@@ -36,7 +36,7 @@ export default {
             text-decoration: none
             font-weight: 500
             font-size: 28px
-            color: #333333
+            color: $color-dark-grey
             &--active
                 border-bottom: 2px solid #E5261E
                 color: #E5261E
