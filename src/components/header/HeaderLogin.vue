@@ -3,7 +3,14 @@
       <button v-if="!currentUser" @click="showLoginModal" class="header-login__btn button button--accent">Войти</button>
       <div class="header-login__personal" v-else>
           <div class="header-login__username">{{ currentUser | userShortName }}</div>
-          <button @click="logout" class="header-login__btn button button--text button--logout">Выйти</button>
+          <Button
+              class="button--logout button--accent-flat"
+              @click="logout"
+              text
+              :loading="loading"
+          >
+              Выйти
+          </Button>
       </div>
   </div>
 </template>
@@ -11,6 +18,11 @@
 <script>
 export default {
   name: 'HeaderLogin',
+  data () {
+    return {
+      loading: false
+    }
+  },
   computed: {
     currentUser () {
       return this.$store.getters.getUsersCurrentUser
@@ -21,7 +33,14 @@ export default {
       this.$store.commit('loginModalShow')
     },
     logout () {
+      this.loading = true
       this.$store.dispatch('usersLoginOutExecute')
+        .then(() => {
+          this.loading = false
+        })
+        .catch(() => {
+          this.loading = false
+        })
     }
   }
 }
@@ -35,11 +54,5 @@ export default {
         &__username
             font-weight: 500
             font-size: 16px
-    .button
-        &--accent
-            background-color: #E5261E
-            color: #fff
-        &--logout
-            color: #E5261E
 
 </style>

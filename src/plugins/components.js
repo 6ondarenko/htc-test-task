@@ -5,6 +5,8 @@ import HeaderLogo from '@/components/header/HeaderLogo'
 import HeaderSearchForm from '@/components/header/HeaderSearchForm'
 import HeaderLogin from '@/components/header/HeaderLogin'
 import LoginModal from '@/components/modals/LoginModal'
+import Button from '@/components/micro/Button'
+import TextField from '@/components/micro/TextField'
 
 export default {
   install (Vue) {
@@ -15,6 +17,9 @@ export default {
     Vue.component('HeaderLogin', HeaderLogin)
     Vue.component('HeaderSearchForm', HeaderSearchForm)
     Vue.component('HeaderNavigationBar', HeaderNavigationBar)
+    // Micro
+    Vue.component('Button', Button)
+    Vue.component('TextField', TextField)
     // Modals
     Vue.component('LoginModal', LoginModal)
   }

@@ -6,10 +6,19 @@
                 <div class="login-modal__top">
                     <div class="login-modal__title">Вход</div>
                     <div class="login-modal__field">
-                        <input type="text" class="input input--single-line" name="login" v-model="login" placeholder="Логин" />
+                        <TextField
+                            single-line
+                            v-model="login"
+                            placeholder="Логин"
+                        />
                     </div>
                     <div class="login-modal__field">
-                        <input type="password" class="input input--single-line" name="password" v-model="password" placeholder="Пароль" />
+                        <TextField
+                                single-line
+                                password
+                                v-model="password"
+                                placeholder="Пароль"
+                        />
                     </div>
                     <div class="login-modal__field">
                         <input type="checkbox" class="checkbox" name="remember" id="remember" v-model="remember" />
@@ -24,7 +33,13 @@
                     </div>
                 </div>
                 <div class="login-modal__bottom">
-                    <button class="login-modal__btn button button--accent" @click="loginExecute">Войти</button>
+                    <Button
+                        @click="loginExecute"
+                        class="button--accent"
+                        :loading="loading"
+                    >
+                        Войти
+                    </Button>
                 </div>
             </div>
         </div>
@@ -38,7 +53,8 @@ export default {
     return {
       login: '',
       password: '',
-      remember: false
+      remember: false,
+      loading: false
     }
   },
   computed: {
@@ -54,14 +70,18 @@ export default {
       this.login = this.password = ''
     },
     loginExecute () {
+      this.loading = true
+      console.log({ login: this.login, password: this.password, remember: this.remember })
       this.$store.dispatch('usersLoginExecute', { login: this.login, password: this.password, remember: this.remember })
         .then(() => {
           this.resetFields()
           this.closeModal()
+          this.loading = false
         })
         .catch((e) => {
           window.alert(e.message)
           this.resetFields()
+          this.loading = false
         })
     }
   }
