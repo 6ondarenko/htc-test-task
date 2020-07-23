@@ -81,6 +81,7 @@ export default {
   },
   methods: {
     click () {
+      if (this.loading) return
       this.$emit('click')
     }
   }
@@ -107,7 +108,10 @@ export default {
             left: 0
             svg
                 margin: 0
+                rect
+                    fill: #fff
         &--loading
+            pointer-events: none
             .button__spinner
                 display: block
             .button__text
@@ -116,8 +120,12 @@ export default {
             border: none
             background: none
         &--accent
-            background-color: #E5261E
+            background-color: $color-accent
             color: #fff
         &--accent-flat
-            color: #E5261E
+            .button__spinner
+                svg
+                    rect
+                        fill: $color-accent
+            color: $color-accent
 </style>
