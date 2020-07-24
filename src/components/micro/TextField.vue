@@ -2,7 +2,7 @@
     <input
         :type="typeComputed"
         :class="{input: true, 'input--single-line': singleLine}"
-        v-model="inputVal"
+        v-model.lazy="inputVal"
         @change="changeHandler"
         @blur="changeHandler"
     />

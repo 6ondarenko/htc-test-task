@@ -72,20 +72,30 @@ export default {
     },
     resetFields () {
       this.login = this.password = ''
+      this.remember = false
     },
     loginExecute () {
       this.loading = true
-      this.$store.dispatch('usersLoginExecute', { login: this.login, password: this.password, remember: this.remember })
-        .then(() => {
+      this.$store.dispatch('usersFirebaseLogin', { login: this.login, password: this.password, remember: this.remember })
+        .then(result => {
+          this.$store.commit('usersSetCurrentUser', result.user.uid)
           this.resetFields()
           this.closeModal()
+          this.loading = false
+        })
+        .catch(e => {
+          alert(e.message)
+          this.loading = false
+        })
+      /*this.$store.dispatch('usersLoginExecute', { login: this.login, password: this.password, remember: this.remember })
+        .then(() => {
           this.loading = false
         })
         .catch((e) => {
           window.alert(e.message)
           this.resetFields()
           this.loading = false
-        })
+        })*/
     },
     checkModalActivity (flag) {
       if (flag) {

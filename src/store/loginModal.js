@@ -1,6 +1,6 @@
 export default {
   state: {
-    loginModalActive: true
+    loginModalActive: false
   },
   getters: {
     loginModalActive: state => state.loginModalActive

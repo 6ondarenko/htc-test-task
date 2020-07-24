@@ -10,12 +10,12 @@
                 <span
                     class="user-info__field-txt"
                     @click="editName"
-                >{{currentUser.name}}</span>
+                >{{userName}}</span>
                 <div
                     class="user-info__field-input"
                 >
                     <TextField
-                        v-model="currentUser.name"
+                        v-model="userName"
                         single-line
                         @update="changeName"
                     />
@@ -47,10 +47,10 @@ export default {
       return this.$store.getters.getUsersCurrentUser
     },
     userName: {
-      get: () => {
+      get () {
         return this.currentUser.name
       },
-      set: (name) => {
+      set (name) {
         const userData = { name }
         this.$store.dispatch('usersUpdateUserInfo', userData)
       }
@@ -75,11 +75,13 @@ export default {
     },
     logout () {
       this.loading = true
-      this.$store.dispatch('usersLoginOutExecute')
+      this.$store.dispatch('usersFirebaseLoginOut')
         .then(() => {
+          this.$store.commit('usersSetCurrentUser', null)
           this.loading = false
         })
-        .catch(() => {
+        .catch((error) => {
+          alert(error.message)
           this.loading = false
         })
     }

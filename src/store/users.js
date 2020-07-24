@@ -1,14 +1,9 @@
+import firebase from 'firebase'
+
 export default {
   state () {
     return {
-      users: [
-        {
-          id: 1,
-          login: 'admin',
-          password: 'admin',
-          name: 'Константин К.'
-        }
-      ],
+      users: [],
       usersCurrentUser: null
     }
   },
@@ -16,15 +11,18 @@ export default {
     getUserByLoginAndPassword: (state) => (login, password) => {
       return state.users.find(u => u.login === login && u.password === password)
     },
-    getUsersCurrentUser: state => state.usersCurrentUser
+    getUsersCurrentUser: state => state.users.find(u => u.id === state.usersCurrentUser)
   },
   mutations: {
     usersSetCurrentUser (state, user) {
       state.usersCurrentUser = user
     },
+    usersAdd (state, user) {
+      state.users.push(user)
+    },
     usersUpdateUserInfo (state, userData) {
       const user = {
-        ...state.users.find(u => u.id === userData.id),
+        ...state.users.find(u => u.id === state.usersCurrentUser),
         ...userData
       }
       state.users = [
@@ -47,13 +45,47 @@ export default {
         }, 1000)
       })
     },
-    usersLoginOutExecute ({ commit }) {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          commit('usersSetCurrentUser', null)
-            resolve(true)
-        }, 1000)
-      })
+    async usersFirebaseLogin (context, data) {
+      // All future sign-in request now include tenant ID.
+      if (!data.remember) firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+      return await firebase.auth().signInWithEmailAndPassword(data.login, data.password)
+    },
+    async usersFirebaseLoginOut () {
+      return await firebase.auth().signOut()
+    },
+    usersAuthCheck ({ commit }) {
+      const user = firebase.auth().currentUser
+      if (user) {
+        commit('usersSetCurrentUser', user.uid)
+      } else {
+        commit('usersSetCurrentUser', null)
+      }
+    },
+    usersFetch ({ commit }) {
+      const query = firebase.database().ref('users').orderByKey()
+      query.once('value')
+        .then(function (snapshot) {
+          snapshot.forEach(function (childSnapshot) {
+            // key will be "ada" the first time and "alan" the second time
+            // var key = childSnapshot.key;
+            // childData will be the actual contents of the child
+            const childData = childSnapshot.val()
+            commit('usersAdd', { ...childData, id: childSnapshot.key })
+          })
+        })
+    },
+    usersUpdateUserInfo ({ commit, getters }, userData) {
+      const user = {
+        ...getters.getUsersCurrentUser,
+        ...userData
+      }
+      firebase
+        .database()
+        .ref('users/' + user.id)
+        .set(user)
+        .then(() => {
+          commit('usersUpdateUserInfo', userData)
+        })
     }
   }
 }
