@@ -3,6 +3,8 @@
         :type="typeComputed"
         :class="{input: true, 'input--single-line': singleLine}"
         v-model="inputVal"
+        @change="changeHandler"
+        @blur="changeHandler"
     />
 </template>
 
@@ -34,6 +36,11 @@ export default {
       set(val) {
         this.$emit('input', val);
       }
+    }
+  },
+  methods: {
+    changeHandler () {
+      this.$emit('update')
     }
   }
 }

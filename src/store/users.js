@@ -3,10 +3,10 @@ export default {
     return {
       users: [
         {
+          id: 1,
           login: 'admin',
           password: 'admin',
-          name: 'Константин',
-          secondName: 'Ковалёв'
+          name: 'Константин К.'
         }
       ],
       usersCurrentUser: null
@@ -21,6 +21,16 @@ export default {
   mutations: {
     usersSetCurrentUser (state, user) {
       state.usersCurrentUser = user
+    },
+    usersUpdateUserInfo (state, userData) {
+      const user = {
+        ...state.users.find(u => u.id === userData.id),
+        ...userData
+      }
+      state.users = [
+        ...state.users.filter(u => u.id !== user.id),
+        user
+      ]
     }
   },
   actions: {

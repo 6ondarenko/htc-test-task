@@ -75,7 +75,6 @@ export default {
     },
     loginExecute () {
       this.loading = true
-      console.log({ login: this.login, password: this.password, remember: this.remember })
       this.$store.dispatch('usersLoginExecute', { login: this.login, password: this.password, remember: this.remember })
         .then(() => {
           this.resetFields()
@@ -87,7 +86,22 @@ export default {
           this.resetFields()
           this.loading = false
         })
+    },
+    checkModalActivity (flag) {
+      if (flag) {
+        document.body.classList.add('modal-show')
+      } else {
+        document.body.classList.remove('modal-show')
+      }
     }
+  },
+  watch: {
+    active (to) {
+      this.checkModalActivity(to)
+    }
+  },
+  mounted () {
+    this.checkModalActivity(this.active)
   }
 }
 </script>
@@ -117,7 +131,6 @@ export default {
             right: 10px
             width: 32px
             height: 32px
-            display: flex
             align-items: center
             &:before
                 content: ''
@@ -142,6 +155,8 @@ export default {
             font-weight: 500
             font-size: 28px
             line-height: 33px
+        &__top
+            flex-grow: 1
         &__body
             position: relative
             z-index: 100

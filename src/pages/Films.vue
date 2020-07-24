@@ -1,5 +1,7 @@
 <template>
-  <div></div>
+  <div class="page-videos">
+
+  </div>
 </template>
 
 <script>
@@ -11,3 +13,8 @@ export default {
   }
 }
 </script>
+
+<style lang="sass">
+  .page-videos
+    height: 10000px
+</style>
