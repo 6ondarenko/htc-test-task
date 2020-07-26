@@ -39,7 +39,8 @@ export default {
   data () {
     return {
       loading: false,
-      edit: false
+      edit: false,
+      uid: null
     }
   },
   computed: {

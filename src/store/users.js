@@ -42,7 +42,7 @@ export default {
       db.collection('users').get()
         .then(snapshot => {
           snapshot.forEach(doc => {
-            commit('usersAdd', { ...doc.data(), id: doc.id })
+            commit('usersAdd', { ...doc.data(), user_id: doc.id })
           })
         })
     },
@@ -52,7 +52,7 @@ export default {
         ...userData
       }
       const db = firebase.firestore()
-      db.collection('users').doc(user.id).update(user)
+      db.collection('users').doc(user.user_id).update(user)
         .then(() => {
           commit('usersUpdateUserInfo', userData)
         })

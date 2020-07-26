@@ -43,5 +43,8 @@ new Vue({
       }
     })
     store.dispatch('usersFetch')
+    store.dispatch('categoriesFetch').then(() => {
+      console.log(store.getters.getCategoriesAll)
+    })
   }
 }).$mount('#app')
