@@ -78,7 +78,8 @@ export default {
       this.loading = true
       this.$store.dispatch('usersFirebaseLogin', { login: this.login, password: this.password, remember: this.remember })
         .then(result => {
-          this.$store.commit('usersSetCurrentUser', result.user.uid)
+          console.log(result)
+          this.$store.commit('usersSetCurrentUserId', result.user.uid)
           this.resetFields()
           this.closeModal()
           this.loading = false

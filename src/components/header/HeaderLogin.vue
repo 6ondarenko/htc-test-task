@@ -77,7 +77,7 @@ export default {
       this.loading = true
       this.$store.dispatch('usersFirebaseLoginOut')
         .then(() => {
-          this.$store.commit('usersSetCurrentUser', null)
+          this.$store.commit('usersSetCurrentUserId', null)
           this.loading = false
         })
         .catch((error) => {

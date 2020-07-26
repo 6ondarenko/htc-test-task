@@ -9,8 +9,8 @@ import firebase from 'firebase/app'
 
 // Add the Firebase products that you want to use
 import 'firebase/auth'
-import 'firebase/database'
-// import "firebase/firestore"
+import 'firebase/firestore'
+// import 'firebase/database'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAll4Ahy2QLFymwMuPKsCFkrWXcEjJA1jI',
@@ -35,11 +35,11 @@ new Vue({
   router,
   render: h => h(App),
   beforeCreate () {
-    firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
-        store.commit('usersSetCurrentUser', user.uid)
+        store.commit('usersSetCurrentUserId', user.uid)
       } else {
-        store.commit('usersSetCurrentUser', null)
+        store.commit('usersSetCurrentUserId', null)
       }
     })
     store.dispatch('usersFetch')
