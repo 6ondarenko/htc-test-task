@@ -1,13 +1,17 @@
 <template>
-    <div class="page-videos">
-        <Slider
-            class="page-videos__slider"
-            :items="getFilmsAll"
-        >🔥 Новинки</Slider>
-        <CategoriesTile
-            class="page-videos__categories-tile"
-            :items="getCategoriesAll"
-        >Жанры</CategoriesTile>
+    <div>
+        <Header/>
+        <NavigationBar class="header__nav"/>
+        <div class="page-videos">
+            <Slider
+                    class="page-videos__slider"
+                    :items="getFilmsAll"
+            >🔥 Новинки</Slider>
+            <CategoriesTile
+                    class="page-videos__categories-tile"
+                    :items="getCategoriesAll"
+            >Жанры</CategoriesTile>
+        </div>
     </div>
 </template>
 
@@ -20,7 +24,7 @@ export default {
     },
     getFilmsAll () {
       const films = this.$store.getters.getFilmsAll
-      if (this.getSearch) {
+      if (this.getSearch !== '') {
         const reg = new RegExp(this.getSearch, 'i');
         return films.filter(film => reg.test(film.name))
       }

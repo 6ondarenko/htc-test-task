@@ -44,7 +44,7 @@ new Vue({
       }
     })
     store.dispatch('usersFetch')
-    this.$store.dispatch('filmsFetch')
+    store.dispatch('filmsFetch')
     store.dispatch('categoriesFetch')
   }
 }).$mount('#app')

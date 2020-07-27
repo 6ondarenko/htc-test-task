@@ -1,6 +1,5 @@
 <template>
     <div>
-        <Header/>
         <router-view/>
         <LoginModal/>
         <Footer/>

@@ -1,7 +1,6 @@
 <template>
     <header class="header">
         <HeaderToolbar/>
-        <HeaderNavigationBar class="header__nav"/>
     </header>
 </template>
 

@@ -6,7 +6,7 @@ export default {
   },
   getters: {
     getFilmsAll: state => state.films,
-    getFilmById: state => id => state.films.find(i => i.film_id = id),
+    getFilmById: state => id => state.films.find(i => i.film_id.toString() === id.toString()),
   },
   mutations: {
     filmsAdd: (state, film) => {
@@ -29,7 +29,8 @@ export default {
                 comments.push(commentDoc.data())
               })
             })
-          commit('filmsAdd', { ...doc.data(), film_id: doc.id, comments })
+          const film = { ...doc.data(), film_id: doc.id, comments }
+          commit('filmsAdd',  film)
         })
       })
     },

@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: 'HeaderNavigationBar'
+  name: 'NavigationBar'
 }
 </script>
 

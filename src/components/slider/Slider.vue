@@ -6,11 +6,11 @@
         <div class="films-slider__wrap">
             <ul class="films-slider__list">
                 <router-link
-                        tag="li"
-                        class="films-slider__item slide"
-                        v-for="(film, k) in items"
-                        :key="k"
-                        :to="{name: 'Film', params: { film_id: film.film_id }}"
+                    tag="li"
+                    class="films-slider__item slide"
+                    v-for="film in items"
+                    :key="film.film_id"
+                    :to="{name: 'Film', params: { film_id: film.film_id }}"
                 >
                     <div class="slide__img" :style="'background-image: url(' + film.img + ')'">
                         <div class="slide__overlay"></div>

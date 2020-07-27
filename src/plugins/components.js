@@ -1,6 +1,6 @@
 import Header from '@/components/header/Header'
 import Footer from '@/components/footer/Footer'
-import HeaderNavigationBar from '@/components/header/HeaderNavigationBar'
+import NavigationBar from '@/components/header/NavigationBar'
 import HeaderToolbar from '@/components/header/HeaderToolbar'
 import HeaderLogo from '@/components/header/HeaderLogo'
 import HeaderSearchForm from '@/components/header/HeaderSearchForm'
@@ -19,7 +19,7 @@ export default {
     Vue.component('HeaderLogo', HeaderLogo)
     Vue.component('HeaderLogin', HeaderLogin)
     Vue.component('HeaderSearchForm', HeaderSearchForm)
-    Vue.component('HeaderNavigationBar', HeaderNavigationBar)
+    Vue.component('NavigationBar', NavigationBar)
     // Footer
     Vue.component('Footer', Footer)
     // Micro
