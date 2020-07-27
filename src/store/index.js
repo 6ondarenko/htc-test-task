@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import users from '@/store/users'
 import films from '@/store/films'
+import search from '@/store/search'
 import categories from '@/store/categories'
 import loginModal from '@/store/loginModal'
 
@@ -12,6 +13,7 @@ export default new Vuex.Store({
     users,
     categories,
     films,
+    search,
     loginModal
   }
 })

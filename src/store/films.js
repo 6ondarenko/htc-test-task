@@ -5,7 +5,8 @@ export default {
     films: []
   },
   getters: {
-    getFilmsAll: state => state.films
+    getFilmsAll: state => state.films,
+    getFilmById: state => id => state.films.find(i => i.film_id = id),
   },
   mutations: {
     filmsAdd: (state, film) => {

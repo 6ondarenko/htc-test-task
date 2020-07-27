@@ -1,7 +1,7 @@
 <template>
     <div class="header-searchform">
         <div class="header-searchform__input">
-            <TextField single-line placeholder="Поиск..."/>
+            <TextField single-line placeholder="Поиск..." v-model="search"/>
         </div>
         <Button
             class="button--accent-flat"
@@ -12,7 +12,17 @@
 
 <script>
 export default {
-  name: 'HeaderSearchform'
+  name: 'HeaderSearchform',
+  computed: {
+    search: {
+      get () {
+        return this.$store.getters.getSearch
+      },
+      set (search) {
+        this.$store.commit('searchSet', search)
+      }
+    }
+  }
 }
 </script>
 

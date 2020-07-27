@@ -6,7 +6,7 @@ export default {
   },
   getters: {
     getCategoriesAll: state => state.categories,
-    getCategoryById: id => state => state.categories.find(i => i.category_id = id),
+    getCategoryById: state => id => state.categories.find(i => i.category_id = id),
   },
   mutations: {
     categoriesAdd: (state, film) => {

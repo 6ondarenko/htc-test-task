@@ -5,10 +5,12 @@
       </div>
       <div class="categories-tile__wrap">
           <ul class="categories-tile__list">
-              <li
+              <router-link
+                  tag="li"
                   class="categories-tile__item"
                   v-for="(category, k) in items"
                   :key="k"
+                  :to="{ name: 'Category', params: { category_id: category.category_id } }"
                   >
                   <div
                       class="categories-tile__item-bg"
@@ -16,8 +18,7 @@
                   ></div>
                   <div class="categories-tile__item-icon">{{category.icon}}</div>
                   <div class="categories-tile__item-title">{{category.name}}</div>
-
-              </li>
+              </router-link>
           </ul>
       </div>
   </div>

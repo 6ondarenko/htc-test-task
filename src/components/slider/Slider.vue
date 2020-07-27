@@ -5,13 +5,19 @@
         </div>
         <div class="films-slider__wrap">
             <ul class="films-slider__list">
-                <li class="films-slider__item slide" v-for="(film, k) in items" :key="k">
+                <router-link
+                        tag="li"
+                        class="films-slider__item slide"
+                        v-for="(film, k) in items"
+                        :key="k"
+                        :to="{name: 'Film', params: { film_id: film.film_id }}"
+                >
                     <div class="slide__img" :style="'background-image: url(' + film.img + ')'">
                         <div class="slide__overlay"></div>
                         <div class="slide__desc">{{film.description}}</div>
                     </div>
                     <div class="slide__text">{{film.name}}</div>
-                </li>
+                </router-link>
             </ul>
         </div>
     </div>

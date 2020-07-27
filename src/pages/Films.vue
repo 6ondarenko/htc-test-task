@@ -15,8 +15,16 @@
 export default {
   name: 'Home',
   computed: {
+    getSearch () {
+      return this.$store.getters.getSearch
+    },
     getFilmsAll () {
-      return this.$store.getters.getFilmsAll
+      const films = this.$store.getters.getFilmsAll
+      if (this.getSearch) {
+        const reg = new RegExp(this.getSearch, 'i');
+        return films.filter(film => reg.test(film.name))
+      }
+      return films
     },
     getCategoriesAll () {
       return this.$store.getters.getCategoriesAll
