@@ -7,6 +7,8 @@ import HeaderLogin from '@/components/header/HeaderLogin'
 import LoginModal from '@/components/modals/LoginModal'
 import Button from '@/components/micro/Button'
 import TextField from '@/components/micro/TextField'
+import Slider from '@/components/slider/Slider'
+import CategoriesTile from '@/components/categories/CategoriesTile'
 
 export default {
   install (Vue) {
@@ -22,5 +24,9 @@ export default {
     Vue.component('TextField', TextField)
     // Modals
     Vue.component('LoginModal', LoginModal)
+    // Slider
+    Vue.component('Slider', Slider)
+    // CategoriesTile
+    Vue.component('CategoriesTile', CategoriesTile)
   }
 }

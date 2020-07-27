@@ -1,3 +1,4 @@
+import 'core-js/stable'
 import Vue from 'vue'
 import Vuex from 'vuex'
 import App from './App.vue'
@@ -43,8 +44,7 @@ new Vue({
       }
     })
     store.dispatch('usersFetch')
-    store.dispatch('categoriesFetch').then(() => {
-      console.log(store.getters.getCategoriesAll)
-    })
+    this.$store.dispatch('filmsFetch')
+    store.dispatch('categoriesFetch')
   }
 }).$mount('#app')
