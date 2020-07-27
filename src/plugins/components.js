@@ -1,4 +1,5 @@
 import Header from '@/components/header/Header'
+import Footer from '@/components/footer/Footer'
 import HeaderNavigationBar from '@/components/header/HeaderNavigationBar'
 import HeaderToolbar from '@/components/header/HeaderToolbar'
 import HeaderLogo from '@/components/header/HeaderLogo'
@@ -19,6 +20,8 @@ export default {
     Vue.component('HeaderLogin', HeaderLogin)
     Vue.component('HeaderSearchForm', HeaderSearchForm)
     Vue.component('HeaderNavigationBar', HeaderNavigationBar)
+    // Footer
+    Vue.component('Footer', Footer)
     // Micro
     Vue.component('Button', Button)
     Vue.component('TextField', TextField)
