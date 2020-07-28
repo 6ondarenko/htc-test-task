@@ -50,11 +50,12 @@
                         </div>
                     </div>
                     <div class="comments-list">
-                        <ul class="comments-list__wrap">
+                        <transition-group name="fade" tag="ul" class="comments-list__wrap">
                             <li
                                     class="comment comments-list__item"
-                                    v-for="(comment, k) in filmComments"
-                                    :key="k"
+                                    v-for="comment in filmCommentsDesc"
+                                    :key="comment.comment_id"
+                                    :id="comment.comment_id"
                             >
                                 <div
                                         class="comment__delete"
@@ -74,7 +75,7 @@
                                 <div class="comment__author">{{getUserNameById(comment.user_id)}}</div>
                                 <div class="comment__txt">{{comment.text}}</div>
                             </li>
-                        </ul>
+                        </transition-group>
                     </div>
                 </div>
             </div>
@@ -110,7 +111,7 @@ export default {
     linkedCategoriesString () {
       return this.linkedCategories.map(category => category.name).join(', ')
     },
-    filmComments () {
+    filmCommentsDesc () {
       const compare = (a, b) => {
         if (a.timestamp > b.timestamp) {
           return -1
@@ -133,18 +134,20 @@ export default {
       return user ? user.name : 'Гость'
     },
     saveComment () {
-      const db = firebase.firestore()
-      const comment = {
+      if (!this.commentText) return
+      let comment = {
         user_id: this.currentUserId,
         text: this.commentText,
         timestamp: Date.now()
       }
-      const updatedFilm = {
-        ...this.film,
-        comments: [...this.film.comments, comment]
-      }
+      const db = firebase.firestore()
       db.collection('films').doc(this.film.film_id).collection('comments').add(comment)
-        .then(() => {
+        .then((docRef) => {
+          comment.comment_id = docRef.id
+          const updatedFilm = {
+            ...this.film,
+            comments: [...this.film.comments, comment]
+          }
           this.$store.commit('filmsUpdateFilm', updatedFilm)
           this.commentText = ''
         })
@@ -158,11 +161,14 @@ export default {
         ...this.film,
         comments: this.film.comments.filter(c => c.comment_id !== id)
       }
+      const commentElement = document.getElementById(id)
+      commentElement.classList.add('comment--deleted')
       db.collection('films').doc(this.film.film_id).collection('comments').doc(id).delete()
         .then(() => {
           this.$store.commit('filmsUpdateFilm', updatedFilm)
         })
         .catch((e) => {
+          commentElement.classList.remove('comment--deleted')
           alert(e.message)
         })
     }
@@ -312,6 +318,12 @@ export default {
             padding: 16px
             background-color: #F2F2F2
             border-radius: 8px
+            transform: translateY(0)
+            opacity: 1
+            transition: .2s ease all
+            &--deleted
+                transform: translateX(-10%)
+                opacity: 0
 
             &__delete
                 position: absolute
@@ -333,5 +345,6 @@ export default {
                 font-weight: normal
                 font-size: 16px
                 line-height: 19px
+
 
 </style>
