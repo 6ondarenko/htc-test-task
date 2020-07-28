@@ -8,7 +8,9 @@ export default {
     }
   },
   getters: {
-    getUsersCurrentUser: state => state.users.find(u => u.user_id === state.usersCurrentUserId)
+    getUsersCurrentUserId: state => state.usersCurrentUserId,
+    getUsersCurrentUser: state => state.users.find(u => u.user_id === state.usersCurrentUserId),
+    getUserById: state => id => state.users.find(u => u.user_id.toString() === id.toString())
   },
   mutations: {
     usersSetCurrentUserId (state, id) {
@@ -56,6 +58,14 @@ export default {
         .then(() => {
           commit('usersUpdateUserInfo', userData)
         })
+    },
+    usersCheckAuth ({ commit }) {
+      const currentUser = firebase.auth().currentUser
+      if (currentUser) {
+        commit('usersSetCurrentUserId', currentUser.uid)
+      } else {
+        commit('usersSetCurrentUserId', null)
+      }
     }
   }
 }

@@ -9,12 +9,17 @@ export default {
     getFilmById: state => id => state.films.find(i => i.film_id.toString() === id.toString()),
   },
   mutations: {
-    filmsAdd: (state, film) => {
-      state.films.push(film)
+    filmsSet: (state, films) => {
+      state.films = films
+    },
+    filmsUpdateFilm (state, film) {
+      let films = state.films.filter(f => f.film_id !== film.film_id)
+      state.films = [...films, film]
     }
   },
   actions: {
     filmsFetch ({ commit }) {
+      let films = []
       const db = firebase.firestore()
       db.collection('films').get().then(snapshot => {
         snapshot.forEach(doc => {
@@ -27,7 +32,7 @@ export default {
             .get()
             .then(ss => {
               ss.forEach(commentDoc => {
-                comments.push(commentDoc.data())
+                comments.push({ ...commentDoc.data(), comment_id: commentDoc.id })
               })
             })
           db
@@ -41,9 +46,10 @@ export default {
               })
             })
           const film = { ...doc.data(), film_id: doc.id, comments, categories }
-          commit('filmsAdd',  film)
+          films.push(film)
         })
       })
-    },
+      commit('filmsSet',  films)
+    }
   }
 }

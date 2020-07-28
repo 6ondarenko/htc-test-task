@@ -43,6 +43,7 @@ new Vue({
         store.commit('usersSetCurrentUserId', null)
       }
     })
+    // store.dispatch('usersCheckAuth')
     store.dispatch('usersFetch')
     store.dispatch('filmsFetch')
     store.dispatch('categoriesFetch')
