@@ -1,6 +1,8 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
+  <div>
+    <Header/>
+    <NavigationBar class="header__nav"/>
+    Телепрограммы
   </div>
 </template>
 

@@ -1,5 +1,7 @@
 <template>
   <div>
+      <Header/>
+      <NavigationBar class="header__nav"/>
       {{category.name}}
   </div>
 </template>
