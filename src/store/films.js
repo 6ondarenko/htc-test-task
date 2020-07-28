@@ -19,6 +19,7 @@ export default {
       db.collection('films').get().then(snapshot => {
         snapshot.forEach(doc => {
           let comments = []
+          let categories = []
           db
             .collection('films')
             .doc(doc.id)
@@ -29,7 +30,17 @@ export default {
                 comments.push(commentDoc.data())
               })
             })
-          const film = { ...doc.data(), film_id: doc.id, comments }
+          db
+            .collection('films')
+            .doc(doc.id)
+            .collection('categories')
+            .get()
+            .then(ss => {
+              ss.forEach(categoryDoc => {
+                categories.push(categoryDoc.data())
+              })
+            })
+          const film = { ...doc.data(), film_id: doc.id, comments, categories }
           commit('filmsAdd',  film)
         })
       })

@@ -1,7 +1,7 @@
 <template>
     <div>
         <Header/>
-        <div class="film-page">
+        <div class="film-page" v-if="film">
             <div class="film-info">
                 <router-link tag="div" :to="{name: 'Films'}" class="go-back film-info__go-back">
                     <svg width="14" height="24" viewBox="0 0 14 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -13,14 +13,27 @@
                     <div class="film-info__img" :style="`background-image: url(${film.img})`"></div>
                     <div class="film-info__info film-info">
                         <div class="film-info__top">
-                            <div class="film-info__left">
-
+                            <div class="film-info__row">
+                                <div class="film-info__left">
+                                    Название:
+                                </div>
+                                <div class="film-info__right"><strong>{{film.name}}</strong></div>
                             </div>
-                            <div class="film-info__right"></div>
+                            <div class="film-info__row">
+                                <div class="film-info__left">
+                                    Страна:
+                                </div>
+                                <div class="film-info__right">{{film.country}}</div>
+                            </div>
+                            <div class="film-info__row">
+                                <div class="film-info__left">
+                                    Жанр:
+                                </div>
+                                <div class="film-info__right">{{linkedCategoriesString}}</div>
+                            </div>
                         </div>
-                        <div class="film-info__bottom"></div>
+                        <div class="film-info__bottom">{{film.description}}</div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -34,6 +47,19 @@ export default {
   computed: {
     film () {
       return this.$store.getters.getFilmById(this.film_id)
+    },
+    linkedCategories () {
+      const categories = []
+      if (this.film) {
+        this.film.categories.forEach(c => {
+          const category = this.$store.getters.getCategoryById(c.category_id)
+          if (category) categories.push(category)
+        })
+      }
+      return categories
+    },
+    linkedCategoriesString () {
+      return this.linkedCategories.map(category => category.name).join(', ')
     }
   }
 }
@@ -72,19 +98,32 @@ export default {
     .film-info
         display: block
         &__top
+            margin: -8px 0
+        &__row
             display: flex
-        &__left
-            width: 80px
+            margin: 8px 0
             height: 24px
             text-align: left
-            vertical-align: bottom
+        &__left
+            display: flex
+            align-items: flex-end
+            width: 80px
             font-weight: normal
             font-size: 16px
-        &__right
-            height: 24px
-            text-align: left
             vertical-align: bottom
+        &__right
+            display: flex
+            align-items: flex-end
+            margin-left: 24px
             font-weight: normal
-            font-size: 24px
+            font-size: 20px
+            vertical-align: bottom
+            strong
+                font-weight: 500
         &__bottom
+            margin-top: 23px
+            width: 580px
+            font-weight: normal
+            font-size: 16px
+            line-height: 140%
 </style>
