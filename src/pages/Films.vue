@@ -7,10 +7,10 @@
                     class="page-videos__slider"
                     :items="getFilmsAll"
             >🔥 Новинки</Slider>
-            <CategoriesTile
+            <Categories
                     class="page-videos__categories-tile"
                     :items="getCategoriesAll"
-            >Жанры</CategoriesTile>
+            >Жанры</Categories>
         </div>
     </div>
 </template>

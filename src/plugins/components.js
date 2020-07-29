@@ -9,7 +9,9 @@ import LoginModal from '@/components/modals/LoginModal'
 import Button from '@/components/micro/Button'
 import TextField from '@/components/micro/TextField'
 import Slider from '@/components/slider/Slider'
-import CategoriesTile from '@/components/categories/CategoriesTile'
+import Categories from '@/components/categories/Categories'
+import CategoryTile from '@/components/categories/CategoryTile'
+import FilmTile from '@/components/films/FilmTile'
 
 export default {
   install (Vue) {
@@ -29,7 +31,10 @@ export default {
     Vue.component('LoginModal', LoginModal)
     // Slider
     Vue.component('Slider', Slider)
-    // CategoriesTile
-    Vue.component('CategoriesTile', CategoriesTile)
+    // Categories
+    Vue.component('Categories', Categories)
+    Vue.component('CategoryTile', CategoryTile)
+    // Films
+    Vue.component('FilmTile', FilmTile)
   }
 }
