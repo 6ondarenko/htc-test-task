@@ -5,7 +5,7 @@
                 <router-link tag="a" class="header-nav__link" :exact="true" active-class="header-nav__link--active" to="/">Фильмы</router-link>
             </li>
             <li class="header-nav__item">
-                <router-link tag="a" class="header-nav__link" :exact="true" active-class="header-nav__link--active" to="/tv">Телеканалы</router-link>
+                <router-link tag="a" class="header-nav__link" :exact="true" active-class="header-nav__link--active" to="/channels">Телеканалы</router-link>
             </li>
         </ul>
     </nav>

@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Films from '../pages/Films.vue'
 import Film from '../pages/Film.vue'
 import Category from '../pages/Category.vue'
-import TVPrograms from '../pages/TVPrograms.vue'
+import Channels from '../pages/Channels.vue'
 
 Vue.use(VueRouter)
 
@@ -26,9 +26,9 @@ const routes = [
     props: true
   },
   {
-    path: '/tv',
-    name: 'TVPrograms',
-    component: TVPrograms
+    path: '/channels',
+    name: 'Channels',
+    component: Channels
   }
 ]
 

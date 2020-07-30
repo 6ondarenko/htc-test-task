@@ -321,6 +321,7 @@ export default {
             transform: translateY(0)
             opacity: 1
             transition: .2s ease all
+
             &--deleted
                 transform: translateX(-10%)
                 opacity: 0

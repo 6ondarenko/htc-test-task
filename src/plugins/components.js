@@ -12,6 +12,7 @@ import Slider from '@/components/slider/Slider'
 import Categories from '@/components/categories/Categories'
 import CategoryTile from '@/components/categories/CategoryTile'
 import FilmTile from '@/components/films/FilmTile'
+import Channel from '@/components/channels/Channel'
 
 export default {
   install (Vue) {
@@ -36,5 +37,7 @@ export default {
     Vue.component('CategoryTile', CategoryTile)
     // Films
     Vue.component('FilmTile', FilmTile)
+    // Channels
+    Vue.component('Channel', Channel)
   }
 }

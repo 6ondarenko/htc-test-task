@@ -4,6 +4,7 @@ import users from '@/store/users'
 import films from '@/store/films'
 import search from '@/store/search'
 import categories from '@/store/categories'
+import channels from '@/store/channels'
 import loginModal from '@/store/loginModal'
 
 Vue.use(Vuex)
@@ -14,6 +15,7 @@ export default new Vuex.Store({
     categories,
     films,
     search,
-    loginModal
+    loginModal,
+    channels
   }
 })
