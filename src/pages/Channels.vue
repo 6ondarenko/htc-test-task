@@ -15,13 +15,13 @@
                     />
                     <li
                             class="channels__item channel"
-                            v-for="i in Array(4)"
+                            v-for="(e,i) in Array(10)"
                             :key="i"
                     >
                         <div class="channel__img"
                              :style="`background-image: url(${require('../../static/img/1ch.png')})`"/>
                         <div class="channel__content">
-                            <div class="channel__title">Первый канал</div>
+                            <div class="channel__title">Первый канал ({{i}})</div>
                             <ul class="channel__tv-program tv-program">
                                 <li class="tv-program__item tv-program__item--active">
                                     <span class="tv-program__time">13:00</span><span class="tv-program__title">Новости (с субтитрами)</span>
