@@ -3,10 +3,7 @@
         <Header/>
         <NavigationBar class="header__nav"/>
         <div class="channels">
-            <perfect-scrollbar
-                    class="channels__wrap"
-                    :ops="ops"
-            >
+            <CustomVerticalScroll class="channels__wrap">
                 <ul class="channels__list">
                     <Channel
                             v-for="channel in channels"
@@ -36,7 +33,7 @@
                         </div>
                     </li>
                 </ul>
-            </perfect-scrollbar>
+            </CustomVerticalScroll>
         </div>
     </div>
 </template>
@@ -44,57 +41,6 @@
 <script>
 export default {
   name: 'TVPrograms',
-  data () {
-    return {
-      ops: {
-        vuescroll: {
-          mode: 'native',
-          sizeStrategy: 'percent',
-          detectResize: true,
-          wheelScrollDuration: 200,
-          wheelDirectionReverse: false
-        },
-        scrollPanel: {
-          initialScrollY: false,
-          initialScrollX: false,
-          scrollingX: false,
-          scrollingY: true,
-          speed: 300,
-          easing: 'easeInOutQuad',
-          verticalNativeBarPos: 'right'
-        },
-        rail: {
-          background: '#f2f2f2',
-          size: '4px',
-          specifyBorderRadius: '2px',
-          opacity: 1,
-          gutterOfEnds: '0',
-          gutterOfSide: '0',
-          keepShow: false,
-          border: '2px solid #f2f2f2'
-        },
-        bar: {
-          background: '#bdbdbd',
-          size: '4px',
-          showDelay: 0,
-          onlyShowBarOnScroll: false,
-          keepShow: true,
-          opacity: 1,
-          hoverStyle: false,
-          specifyBorderRadius: '2px',
-          minSize: 0,
-          disable: false
-        },
-        scrollButton: {
-          enable: false,
-          background: '#f2f2f2',
-          opacity: 1,
-          step: 180,
-          mousedownStep: 30
-        }
-      }
-    }
-  },
   computed: {
     channels () {
       return this.$store.getters.getChannelsAll
@@ -104,11 +50,6 @@ export default {
 </script>
 
 <style lang="sass">
-    .__panel
-        scrollbar-width: none
-        -ms-overflow-style: none
-        &::-webkit-scrollbar
-            display: none
     .channels
         position: relative
         margin: 0 auto
@@ -120,10 +61,6 @@ export default {
             padding-right: 16px !important
             width: 100%
             overflow: hidden
-            scrollbar-width: none
-            -ms-overflow-style: none
-        &__wrap::-webkit-scrollbar
-            display: none
         &__list
             width: 1180px
             margin: -16px 0 0

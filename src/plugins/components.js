@@ -1,3 +1,4 @@
+import vuescroll from 'vuescroll'
 import Header from '@/components/header/Header'
 import Footer from '@/components/footer/Footer'
 import NavigationBar from '@/components/header/NavigationBar'
@@ -13,13 +14,14 @@ import Categories from '@/components/categories/Categories'
 import CategoryTile from '@/components/categories/CategoryTile'
 import FilmTile from '@/components/films/FilmTile'
 import Channel from '@/components/channels/Channel'
-import vuescroll from 'vuescroll'
+import CustomVerticalScroll from '@/components/micro/CustomVerticalScroll'
 
 export default {
   install (Vue) {
     Vue.use(vuescroll, {
-      name: 'perfect-scrollbar'
+      name: 'vuescroll'
     })
+    Vue.component('CustomVerticalScroll', CustomVerticalScroll)
     // Header
     Vue.component('Header', Header)
     Vue.component('HeaderToolbar', HeaderToolbar)
