@@ -10,6 +10,18 @@ import loginModal from '@/store/loginModal'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+  state: {
+    globalScrollbar: true,
+    globalScrollbarY: 0,
+  },
+  getters: {
+    globalScrollbar: state => state.globalScrollbar,
+    globalScrollbarY: state => state.globalScrollbarY
+  },
+  mutations: {
+    globalScrollbarSet: (state, flag) => { state.globalScrollbar = flag },
+    globalScrollbarYSet: (state, payload) => { state.globalScrollbarY = payload }
+  },
   modules: {
     users,
     categories,

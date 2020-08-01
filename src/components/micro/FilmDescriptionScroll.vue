@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: 'CustomVerticalScroll',
+  name: 'FilmDescriptionScroll',
   data () {
     return {
       ops: {
@@ -29,14 +29,14 @@ export default {
           verticalNativeBarPos: 'right'
         },
         rail: {
-          background: '#f2f2f2',
+          background: 'transparent',
           size: '4px',
           specifyBorderRadius: '2px',
           opacity: 1,
           gutterOfEnds: '0',
           gutterOfSide: '0',
           keepShow: false,
-          border: '2px solid #f2f2f2'
+          border: '4px solid transparent'
         },
         bar: {
           background: '#bdbdbd',
@@ -65,6 +65,7 @@ export default {
 
 <style>
     .__panel {
+        width: 100%;
         scrollbar-width: none;
         -ms-overflow-style: none;
     }

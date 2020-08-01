@@ -1,30 +1,45 @@
 <template>
     <vuescroll
-        :ops="ops"
+            v-if="renderComponent"
+            ref="vuescroll"
+            :ops="globalScrollbarOps"
+            :key="componentKey"
     >
-        <slot />
+        <slot/>
     </vuescroll>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'CustomVerticalScroll',
   data () {
     return {
-      ops: {
+      renderComponent: true,
+      componentKey: 0
+    }
+  },
+  computed: {
+    ...mapGetters(['globalScrollbarY', 'globalScrollbar']),
+    globalScrollbarOps () {
+      return {
         vuescroll: {
           mode: 'native',
           sizeStrategy: 'percent',
           detectResize: true,
           wheelScrollDuration: 200,
-          wheelDirectionReverse: false
+          wheelDirectionReverse: false,
+          pushLoad: {
+            enable: false
+          }
         },
         scrollPanel: {
-          initialScrollY: false,
-          initialScrollX: false,
-          scrollingX: false,
-          scrollingY: true,
-          speed: 300,
+          initialScrollY: this.globalScrollbarY,
+          initialScrollX: 0,
+          scrollingX: this.globalScrollbar,
+          scrollingY: this.globalScrollbar,
+          speed: 0,
           easing: 'easeInOutQuad',
           verticalNativeBarPos: 'right'
         },
@@ -57,7 +72,25 @@ export default {
           step: 180,
           mousedownStep: 30
         }
+
       }
+    }
+  },
+  methods: {
+    forceRerender () {
+      setTimeout(() => {
+        this.componentKey++
+        this.$refs.vuescroll.$nextTick().then(() => {
+          document.querySelector('.__panel').scrollTop = this.globalScrollbarY
+        })
+      }, 200)
+    }
+  },
+  watch: {
+    globalScrollbar () {
+      const y = this.$refs.vuescroll.getPosition().scrollTop
+      this.$store.commit('globalScrollbarYSet', y)
+      this.forceRerender()
     }
   }
 }

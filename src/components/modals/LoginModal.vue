@@ -1,7 +1,9 @@
 <template>
     <transition name="fade">
         <div class="login-modal" v-if="active">
-            <div class="overlay"></div>
+            <div
+                    class="overlay"
+            ></div>
             <div class="login-modal__body">
                 <div
                         class="login-modal__close-btn"
@@ -53,6 +55,9 @@
 <script>
 export default {
   name: 'LoginModal',
+  props: [
+    'globalScrollbar'
+  ],
   data () {
     return {
       login: '',
@@ -78,7 +83,6 @@ export default {
       this.loading = true
       this.$store.dispatch('usersFirebaseLogin', { login: this.login, password: this.password, remember: this.remember })
         .then(result => {
-          console.log(result)
           this.$store.commit('usersSetCurrentUserId', result.user.uid)
           this.resetFields()
           this.closeModal()
@@ -88,21 +92,12 @@ export default {
           alert(e.message)
           this.loading = false
         })
-      /*this.$store.dispatch('usersLoginExecute', { login: this.login, password: this.password, remember: this.remember })
-        .then(() => {
-          this.loading = false
-        })
-        .catch((e) => {
-          window.alert(e.message)
-          this.resetFields()
-          this.loading = false
-        })*/
     },
     checkModalActivity (flag) {
       if (flag) {
-        document.body.classList.add('modal-show')
+        this.$store.commit('globalScrollbarSet', false)
       } else {
-        document.body.classList.remove('modal-show')
+        this.$store.commit('globalScrollbarSet', true)
       }
     }
   },

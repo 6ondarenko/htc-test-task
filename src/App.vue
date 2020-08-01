@@ -1,9 +1,12 @@
 <template>
-    <div>
+    <CustomScroll
+            class="scroll"
+            ref="globalScrollbar"
+    >
         <router-view/>
-        <LoginModal/>
+        <LoginModal :global-scrollbar="$refs.globalScrollbar"/>
         <Footer/>
-    </div>
+    </CustomScroll>
 </template>
 
 <script>
@@ -11,22 +14,28 @@ export default {
   name: 'App',
   watch: {
     $route () {
-      const body = document.querySelectorAll('html, body')
-      body.forEach(e => {
-        e.scrollTop = 0
-      })
+      document.querySelector('.__panel').scrollTop = 0
+      // body.forEach(e => {
+      //   e.scrollTop = 0
+      // })
     }
   }
 }
 </script>
 
+
 <style lang="sass">
     @import '~reset-css/reset.css'
     @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap')
     body
+        overflow: hidden
         font-family: Rubik, default sans-serif
         color: $color-dark-grey
-    /*overflow: scroll*/
+    .scroll
+        position: fixed !important
+        height: 100vh
+        width: 100vw
+
     .modal-show
         overflow: hidden
 

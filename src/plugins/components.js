@@ -14,14 +14,18 @@ import Categories from '@/components/categories/Categories'
 import CategoryTile from '@/components/categories/CategoryTile'
 import FilmTile from '@/components/films/FilmTile'
 import Channel from '@/components/channels/Channel'
+import CustomScroll from '@/components/micro/CustomScroll'
 import CustomVerticalScroll from '@/components/micro/CustomVerticalScroll'
+import FilmDescriptionScroll from '@/components/micro/FilmDescriptionScroll'
 
 export default {
   install (Vue) {
     Vue.use(vuescroll, {
       name: 'vuescroll'
     })
+    Vue.component('CustomScroll', CustomScroll)
     Vue.component('CustomVerticalScroll', CustomVerticalScroll)
+    Vue.component('FilmDescriptionScroll', FilmDescriptionScroll)
     // Header
     Vue.component('Header', Header)
     Vue.component('HeaderToolbar', HeaderToolbar)
