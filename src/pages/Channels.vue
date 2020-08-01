@@ -65,12 +65,13 @@ export default {
         },
         rail: {
           background: '#f2f2f2',
-          size: '8px',
+          size: '4px',
           specifyBorderRadius: '2px',
           opacity: 1,
           gutterOfEnds: '0',
           gutterOfSide: '0',
-          keepShow: false
+          keepShow: false,
+          border: '2px solid #f2f2f2'
         },
         bar: {
           background: '#bdbdbd',
