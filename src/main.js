@@ -47,9 +47,6 @@ new Vue({
     store.dispatch('usersFetch')
     store.dispatch('filmsFetch')
     store.dispatch('channelsFetch')
-      .then(() => {
-        console.log(store.getters.getChannelsAll)
-      })
     store.dispatch('categoriesFetch')
   }
 }).$mount('#app')

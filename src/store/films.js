@@ -7,6 +7,11 @@ export default {
   getters: {
     getFilmsAll: state => state.films,
     getFilmById: state => id => state.films.find(i => i.film_id.toString() === id.toString()),
+    getFilmsByCategoryId: (state) => category_id => {
+      return state.films.filter(
+        film => film.categories.filter(category => category.category_id === category_id).length > 0
+      )
+    }
   },
   mutations: {
     filmsSet: (state, films) => {

@@ -13,9 +13,13 @@ import Categories from '@/components/categories/Categories'
 import CategoryTile from '@/components/categories/CategoryTile'
 import FilmTile from '@/components/films/FilmTile'
 import Channel from '@/components/channels/Channel'
+import vuescroll from 'vuescroll'
 
 export default {
   install (Vue) {
+    Vue.use(vuescroll, {
+      name: 'perfect-scrollbar'
+    })
     // Header
     Vue.component('Header', Header)
     Vue.component('HeaderToolbar', HeaderToolbar)

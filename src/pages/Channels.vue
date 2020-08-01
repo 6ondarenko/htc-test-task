@@ -3,7 +3,10 @@
         <Header/>
         <NavigationBar class="header__nav"/>
         <div class="channels">
-            <div class="channels__wrap">
+            <perfect-scrollbar
+                    class="channels__wrap"
+                    :ops="ops"
+            >
                 <ul class="channels__list">
                     <Channel
                             v-for="channel in channels"
@@ -12,7 +15,7 @@
                     />
                     <li
                             class="channels__item channel"
-                            v-for="i in Array(3)"
+                            v-for="i in Array(4)"
                             :key="i"
                     >
                         <div class="channel__img"
@@ -33,7 +36,7 @@
                         </div>
                     </li>
                 </ul>
-            </div>
+            </perfect-scrollbar>
         </div>
     </div>
 </template>
@@ -41,6 +44,56 @@
 <script>
 export default {
   name: 'TVPrograms',
+  data () {
+    return {
+      ops: {
+        vuescroll: {
+          mode: 'native',
+          sizeStrategy: 'percent',
+          detectResize: true,
+          wheelScrollDuration: 200,
+          wheelDirectionReverse: false
+        },
+        scrollPanel: {
+          initialScrollY: false,
+          initialScrollX: false,
+          scrollingX: false,
+          scrollingY: true,
+          speed: 300,
+          easing: 'easeInOutQuad',
+          verticalNativeBarPos: 'right'
+        },
+        rail: {
+          background: '#f2f2f2',
+          size: '8px',
+          specifyBorderRadius: '2px',
+          opacity: 1,
+          gutterOfEnds: '0',
+          gutterOfSide: '0',
+          keepShow: false
+        },
+        bar: {
+          background: '#bdbdbd',
+          size: '4px',
+          showDelay: 0,
+          onlyShowBarOnScroll: false,
+          keepShow: true,
+          opacity: 1,
+          hoverStyle: false,
+          specifyBorderRadius: '2px',
+          minSize: 0,
+          disable: false
+        },
+        scrollButton: {
+          enable: false,
+          background: '#f2f2f2',
+          opacity: 1,
+          step: 180,
+          mousedownStep: 30
+        }
+      }
+    }
+  },
   computed: {
     channels () {
       return this.$store.getters.getChannelsAll
@@ -50,17 +103,29 @@ export default {
 </script>
 
 <style lang="sass">
+    .__panel
+        scrollbar-width: none
+        -ms-overflow-style: none
+        &::-webkit-scrollbar
+            display: none
     .channels
+        position: relative
         margin: 0 auto
         padding-top: 27px
         width: 1180px
+        height: 696px
         &__wrap
-            box-sizing: border-box
+            position: relative
+            padding-right: 16px !important
             width: 100%
-            max-height: 696px
             overflow: hidden
+            scrollbar-width: none
+            -ms-overflow-style: none
+        &__wrap::-webkit-scrollbar
+            display: none
         &__list
-            margin: -16px 0
+            width: 1180px
+            margin: -16px 0 0
         &__item
-            margin: 16px 0
+            margin: 16px 0 0
 </style>
