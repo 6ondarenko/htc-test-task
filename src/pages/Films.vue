@@ -37,7 +37,7 @@ export default {
 
 <style lang="sass">
     .page-videos
-        box-sizing: border-box
+        box-sizing: content-box
         padding: 0 10px
         margin: 0 auto
         width: 1180px
@@ -48,8 +48,9 @@ export default {
 
     @media (max-width: 480px)
         .page-videos
+            box-sizing: border-box
             margin: 0 0
-            padding: 71px 10px 0
+            padding: 64px 10px 0
             overflow: hidden
             width: 100vw
 

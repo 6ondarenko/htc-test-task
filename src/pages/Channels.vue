@@ -72,7 +72,7 @@ export default {
             margin: 16px 0 0
     @media (max-width: 480px)
         .channels-container
-            padding: 71px 10px 0
+            padding: 64px 10px 0
         .channels
             width: 100%
             height: 100%

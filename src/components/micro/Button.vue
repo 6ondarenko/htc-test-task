@@ -46,6 +46,8 @@ export default {
 
 <style lang="sass">
     .button
+        user-select: none
+        -webkit-tap-highlight-color: transparent
         position: relative
         border: none
         border-radius: 4px

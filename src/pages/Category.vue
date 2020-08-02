@@ -1,27 +1,27 @@
 <template>
-        <div class="films-tile" v-if="category && films">
-            <Header/>
-            <NavigationBar class="header__nav"/>
-            <div class="films-tile__title">{{category.name}}</div>
-            <ul class="films-tile__wrap">
-                <FilmTile
-                        tag="li"
-                        v-for="film in films"
-                        :key="film.film_id"
-                        :film="film"
-                        :to="{name: 'Film', params: {film_id: film.film_id}}"
-                        class="films-tile__item"
-                />
-                <FilmTile
-                        tag="li"
-                        v-for="film in films"
-                        :key="film.film_id + '_copy'"
-                        :film="film"
-                        :to="{name: 'Film', params: {film_id: film.film_id}}"
-                        class="films-tile__item"
-                />
-            </ul>
-        </div>
+    <div class="films-tile" v-if="category && films">
+        <Header/>
+        <NavigationBar class="header__nav"/>
+        <div class="films-tile__title">{{category.name}}</div>
+        <ul class="films-tile__wrap">
+            <FilmTile
+                    tag="li"
+                    v-for="film in films"
+                    :key="film.film_id"
+                    :film="film"
+                    :to="{name: 'Film', params: {film_id: film.film_id}}"
+                    class="films-tile__item"
+            />
+            <FilmTile
+                    tag="li"
+                    v-for="film in films"
+                    :key="film.film_id + '_copy'"
+                    :film="film"
+                    :to="{name: 'Film', params: {film_id: film.film_id}}"
+                    class="films-tile__item"
+            />
+        </ul>
+    </div>
 </template>
 
 <script>
@@ -38,7 +38,7 @@ export default {
     films () {
       const films = this.$store.getters.getFilmsByCategoryId(this.category_id)
       if (this.getSearch !== '') {
-        const reg = new RegExp(this.getSearch, 'i');
+        const reg = new RegExp(this.getSearch, 'i')
         return films.filter(film => reg.test(film.name))
       }
       return films
@@ -49,7 +49,7 @@ export default {
 
 <style lang="sass">
     .films-tile
-        box-sizing: border-box
+        box-sizing: content-box
         padding: 0 10px
         margin: 0 auto
         width: 1180px
@@ -71,14 +71,15 @@ export default {
                 height: 370px
     @media (max-width: 480px)
         .films-tile
-            padding: 103px 10px 0
+            box-sizing: border-box
+            padding: 64px 10px 0
             width: 100%
             &__wrap
                 margin: 0
                 display: block
             &__item
                 box-sizing: border-box
-                margin: 0  0 20px
+                margin: 0 0 20px
                 width: 100%
                 .film-tile__img
                     height: 560px

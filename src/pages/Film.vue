@@ -177,7 +177,7 @@ export default {
 <style lang="sass">
     .film-page
         position: relative
-        box-sizing: border-box
+        box-sizing: content-box
         padding: 0 10px
         margin: 0 auto
         width: 1180px
@@ -187,6 +187,7 @@ export default {
         display: block
         padding-top: 44px
         &__go-back
+            cursor: pointer
             position: absolute
             top: 54px
             left: 0
@@ -341,8 +342,9 @@ export default {
 
     @media (max-width: 480px)
         .film-page
+            box-sizing: border-box
             width: 100%
-            padding-top: 71px
+            padding-top: 64px
         .film-info
             &__go-back
                 position: absolute
