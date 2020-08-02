@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="channels-container">
         <Header/>
         <NavigationBar class="header__nav"/>
         <div class="channels">
@@ -50,6 +50,10 @@ export default {
 </script>
 
 <style lang="sass">
+    .channels-container
+        box-sizing: border-box !important
+        width: 100%
+        padding: 0 10px
     .channels
         position: relative
         margin: 0 auto
@@ -66,4 +70,15 @@ export default {
             margin: -16px 0 0
         &__item
             margin: 16px 0 0
+    @media (max-width: 480px)
+        .channels-container
+            padding: 71px 10px 0
+        .channels
+            width: 100%
+            height: 100%
+            &__wrap
+                box-sizing: border-box
+                padding-right: 0 !important
+            &__list
+                width: 100%
 </style>

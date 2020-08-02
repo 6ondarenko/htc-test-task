@@ -55,9 +55,6 @@
 <script>
 export default {
   name: 'LoginModal',
-  props: [
-    'globalScrollbar'
-  ],
   data () {
     return {
       login: '',
@@ -115,6 +112,7 @@ export default {
 <style lang="sass">
     .overlay
         position: fixed
+        z-index: 100
         top: 0
         right: 0
         bottom: 0
@@ -123,6 +121,7 @@ export default {
         opacity: .6
     .login-modal
         position: fixed
+        z-index: 100
         top: 0
         right: 0
         bottom: 0
@@ -209,5 +208,13 @@ export default {
         align-items: center
         &__txt
             font-size: 16px
+
+    @media (max-width: 480px)
+        .login-modal
+            padding: 0 10px
+            &__body
+                width: 100%
+                height: 240px
+
 
 </style>

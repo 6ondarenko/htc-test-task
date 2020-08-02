@@ -1,8 +1,7 @@
 <template>
-    <div>
-        <Header/>
-        <NavigationBar class="header__nav"/>
         <div class="films-tile" v-if="category && films">
+            <Header/>
+            <NavigationBar class="header__nav"/>
             <div class="films-tile__title">{{category.name}}</div>
             <ul class="films-tile__wrap">
                 <FilmTile
@@ -23,7 +22,6 @@
                 />
             </ul>
         </div>
-    </div>
 </template>
 
 <script>
@@ -51,17 +49,38 @@ export default {
 
 <style lang="sass">
     .films-tile
-        margin: 32px auto 0
+        box-sizing: border-box
+        padding: 0 10px
+        margin: 0 auto
         width: 1180px
         &__title
+            margin-top: 32px
             height: 28px
             font-size: 24px
             line-height: 28px
             font-weight: 500
         &__wrap
-            margin: -4px -10px -20px
+            margin: -20px -10px
+            padding-top: 18px
             display: flex
             flex-wrap: wrap
         &__item
             margin: 20px 10px
+            width: 280px
+            .film-tile__img
+                height: 370px
+    @media (max-width: 480px)
+        .films-tile
+            padding: 103px 10px 0
+            width: 100%
+            &__wrap
+                margin: 0
+                display: block
+            &__item
+                box-sizing: border-box
+                margin: 0  0 20px
+                width: 100%
+                .film-tile__img
+                    height: 560px
+
 </style>

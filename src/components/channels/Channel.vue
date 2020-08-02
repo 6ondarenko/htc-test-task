@@ -1,7 +1,9 @@
 <template>
     <li class="channels__item channel">
-        <div class="channel__img"
-             :style="'background-image: url(' + channel.img + ')'"/>
+        <div
+            class="channel__img"
+            :style="'background-image: url(' + channel.img + ')'"
+        ></div>
         <div class="channel__content">
             <div class="channel__title">{{channel.name}}</div>
             <ul class="channel__tv-program tv-program">
@@ -79,4 +81,11 @@ export default {
 
             &__time
                 margin-right: 16px
+    @media (max-width: 480px)
+        .channel
+            &__img
+                height: 162px
+                width: 100%
+            &__content
+                padding: 21px 10px 10px
 </style>

@@ -34,8 +34,6 @@ export default {
 <style lang="sass">
     .category-tile
         position: relative
-        width: 280px
-        height: 208px
         border-radius: 6px
         overflow: hidden
         cursor: pointer

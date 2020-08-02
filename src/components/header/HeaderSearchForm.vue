@@ -34,4 +34,10 @@ export default {
     .header-searchform
         &__input
             width: 320px
+    @media (max-width: 480px)
+        .header-searchform
+            display: none
+            &__input
+                width: 220px
+
 </style>

@@ -25,21 +25,23 @@ export default {
 
 <style lang="sass">
     .footer
+        box-sizing: border-box
         margin-top: 72px
         width: 100%
-        height: 120px
+        min-height: 120px
         background-color: #f2f2f2
         &__wrap
+            box-sizing: border-box
             display: flex
             margin: 0 auto
             width: 1180px
+            padding: 20px 10px
         &__logo
             width: 32px
             height: 64px
-            margin-top: 28px
+            padding-top: 6px
         &__text
-            margin-top: 22px
-            margin-left: 40px
+            padding-left: 40px
             font-weight: normal
             font-size: 16px
             line-height: 19px
@@ -53,4 +55,10 @@ export default {
                 text-decoration: none
             a:hover
                 text-decoration: underline
+
+    @media (max-width: 480px)
+        .footer
+            width: 100%
+            &__wrap
+                width: 100%
 </style>

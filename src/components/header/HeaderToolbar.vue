@@ -1,8 +1,8 @@
 <template>
     <div class="header-toolbar">
-        <HeaderLogo />
-        <HeaderSearchForm />
-        <HeaderLogin />
+        <HeaderLogo class="header-toolbar__logo" />
+        <HeaderSearchForm class="header-toolbar__search-form" />
+        <HeaderLogin class="header-toolbar__login" />
     </div>
 </template>
 
@@ -17,4 +17,8 @@ export default {
         display: flex
         align-items: flex-start
         justify-content: space-between
+
+        @media (max-width: 768px)
+            .header-toolbar
+                display: block
 </style>

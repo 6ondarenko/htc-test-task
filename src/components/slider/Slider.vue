@@ -36,7 +36,6 @@ export default {
             font-size: 24px
             line-height: 28px
             font-weight: 500
-
         &__wrap
             margin-top: 16px
             height: 434px
@@ -44,17 +43,18 @@ export default {
             overflow-x: auto
             -ms-overflow-style: none
             scrollbar-width: none
-
         &__wrap::-webkit-scrollbar
             display: none
 
         &__list
             margin: 0 -10px
             white-space: nowrap
-
         .slide
+            width: 280px
             margin: 0 10px
             display: inline-block
             vertical-align: top
             font-size: 0
+            .film-tile__img
+                height: 370px
 </style>

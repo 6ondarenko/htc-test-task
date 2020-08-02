@@ -110,4 +110,8 @@ export default {
         &__field-input
             display: none
 
+    @media (max-width: 480px)
+        .header-login
+            float: right
+
 </style>

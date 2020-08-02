@@ -40,4 +40,10 @@ export default {
             border-top: 15px solid transparent
             border-left: 25px solid #fff
             border-bottom: 15px solid transparent
+
+    @media (max-width: 768px)
+        .header-logo
+            float: left
+            &__txt
+                display: none
 </style>

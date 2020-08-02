@@ -4,7 +4,7 @@
             ref="globalScrollbar"
     >
         <router-view/>
-        <LoginModal :global-scrollbar="$refs.globalScrollbar"/>
+        <LoginModal/>
         <Footer/>
     </CustomScroll>
 </template>
@@ -33,8 +33,9 @@ export default {
         color: $color-dark-grey
     .scroll
         position: fixed !important
-        height: 100vh
-        width: 100vw
+        top: 0
+        left: 0
+        right: 0
 
     .modal-show
         overflow: hidden

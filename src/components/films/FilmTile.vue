@@ -35,8 +35,6 @@ export default {
 
 <style lang="sass">
     .film-tile
-        width: 280px
-
         &__text
             font-size: 20px
             line-height: 24px
@@ -44,7 +42,6 @@ export default {
             height: 48px
             margin-top: 16px
             white-space: normal
-
         &__img
             cursor: pointer
             overflow: hidden
@@ -54,13 +51,11 @@ export default {
             background-size: cover
             background-repeat: no-repeat
             border-radius: 8px
-            height: 370px !important
-            width: 280px
-
-        &__img:hover
+            width: 100%
+        &__img:hover,
+        &__img:active
             .film-tile__overlay, .film-tile__desc
                 transform: translateY(0)
-
         &__overlay
             transition: .2s ease transform
             transform: translateY(100%)
@@ -71,7 +66,6 @@ export default {
             left: 0
             background: $color-dark-grey
             opacity: 0.8
-
         &__desc
             transition: .2s ease transform
             transform: translateY(100%)
