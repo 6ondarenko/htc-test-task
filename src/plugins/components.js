@@ -1,4 +1,3 @@
-import vuescroll from 'vuescroll'
 import Header from '@/components/header/Header'
 import Footer from '@/components/footer/Footer'
 import NavigationBar from '@/components/header/NavigationBar'
@@ -20,9 +19,6 @@ import FilmDescriptionScroll from '@/components/micro/FilmDescriptionScroll'
 
 export default {
   install (Vue) {
-    Vue.use(vuescroll, {
-      name: 'vuescroll'
-    })
     Vue.component('CustomScroll', CustomScroll)
     Vue.component('CustomVerticalScroll', CustomVerticalScroll)
     Vue.component('FilmDescriptionScroll', FilmDescriptionScroll)

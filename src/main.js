@@ -7,6 +7,7 @@ import components from '@/plugins/components'
 import filters from '@/plugins/filters'
 import store from '@/store/index'
 import firebase from 'firebase/app'
+import vuescroll from 'vuescroll'
 
 // Add the Firebase products that you want to use
 import 'firebase/auth'
@@ -28,6 +29,9 @@ firebase.initializeApp(firebaseConfig)
 Vue.use(Vuex)
 Vue.use(components)
 Vue.use(filters)
+Vue.use(vuescroll, {
+  name: 'vuescroll'
+})
 
 Vue.config.productionTip = false
 

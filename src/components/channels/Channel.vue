@@ -83,6 +83,7 @@ export default {
                 margin-right: 16px
     @media (max-width: 480px)
         .channel
+            display: block
             &__img
                 height: 162px
                 width: 100%

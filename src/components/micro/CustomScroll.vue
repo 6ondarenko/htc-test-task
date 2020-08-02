@@ -30,8 +30,8 @@ export default {
           detectResize: true,
           wheelScrollDuration: 200,
           wheelDirectionReverse: false,
-          pushLoad: {
-            enable: false
+          pullRefresh: {
+            enable: true
           }
         },
         scrollPanel: {
@@ -78,12 +78,8 @@ export default {
   },
   methods: {
     forceRerender () {
-      setTimeout(() => {
-        this.componentKey++
-        this.$refs.vuescroll.$nextTick().then(() => {
-          document.querySelector('.__panel').scrollTop = this.globalScrollbarY
-        })
-      }, 200)
+      this.$refs.vuescroll.mergedOptions = this.globalScrollbarOps
+      this.$refs.vuescroll.refresh()
     }
   },
   watch: {
