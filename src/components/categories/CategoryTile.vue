@@ -33,11 +33,12 @@ export default {
 
 <style lang="sass">
     .category-tile
+        user-select: none
         position: relative
         border-radius: 6px
         overflow: hidden
         cursor: pointer
-        &:hover
+        &:active
             .category-tile__bg
                 opacity: 1
         &__bg
@@ -71,4 +72,8 @@ export default {
             font-weight: normal
             text-align: center
             color: #FFFFFF
+    @media (hover: hover)
+        .category-tile:hover
+            .category-tile__bg
+                opacity: 1
 </style>

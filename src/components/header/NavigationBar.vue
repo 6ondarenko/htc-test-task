@@ -40,4 +40,11 @@ export default {
             &--active
                 border-bottom: 2px solid #E5261E
                 color: #E5261E
+        &__link:active
+            border-bottom: 2px solid
+            border-bottom-color: inherit
+    @media (hover: hover)
+        .header-nav__link:hover
+            border-bottom: 2px solid
+            border-bottom-color: inherit
 </style>

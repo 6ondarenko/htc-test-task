@@ -191,6 +191,10 @@ export default {
             position: absolute
             top: 54px
             left: 0
+        &__go-back:active
+            svg
+                path
+                    stroke: lighten($color-accent, 20%)
         &__wrap
             display: flex
             align-items: flex-start
@@ -326,6 +330,10 @@ export default {
             width: 16px
             height: 16px
             cursor: pointer
+        &__delete:active
+            svg
+                path
+                    fill: lighten($color-accent, 20%)
 
         &__author
             font-style: normal
@@ -413,4 +421,14 @@ export default {
                 font-weight: normal
                 font-size: 16px
                 line-height: 19px
+
+    @media (hover: hover)
+        .film-info__go-back:hover
+            svg
+                path
+                    stroke: lighten($color-accent, 20%)
+        .comment__delete:hover
+            svg
+                path
+                    fill: lighten($color-accent, 20%)
 </style>

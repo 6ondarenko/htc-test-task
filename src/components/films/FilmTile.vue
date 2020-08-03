@@ -82,4 +82,5 @@ export default {
             font-weight: normal
             overflow: auto
             color: #F2F2F2
+            user-select: none
 </style>

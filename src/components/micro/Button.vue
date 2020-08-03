@@ -44,6 +44,8 @@ export default {
 }
 </script>
 
+
+
 <style lang="sass">
     .button
         user-select: none
@@ -87,7 +89,11 @@ export default {
         &--accent
             background-color: $color-accent
             color: #fff
+        &--accent:active
+            background-color: lighten($color-accent, 20%)
 
+        &--accent-flat:active
+            color: lighten($color-accent, 20%)
         &--accent-flat
             .button__spinner
             svg
@@ -95,9 +101,17 @@ export default {
                     stroke: $color-accent
             color: $color-accent
 
-        @keyframes rotation
-            from
-                transform: rotate(0deg)
-            to
-                transform: rotate(360deg)
+    @keyframes rotation
+        from
+            transform: rotate(0deg)
+        to
+            transform: rotate(360deg)
+
+    @media (hover: hover)
+        .button
+            &--accent:hover
+                background-color: lighten($color-accent, 20%)
+            &--accent-flat:hover,
+            &--accent-flat:active
+                color: lighten($color-accent, 20%)
 </style>
