@@ -40,6 +40,7 @@ new Vue({
   router,
   render: h => h(App),
   beforeCreate () {
+    console.log('app created')
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         store.commit('usersSetCurrentUserId', user.uid)
@@ -47,11 +48,9 @@ new Vue({
         store.commit('usersSetCurrentUserId', null)
       }
     })
-    Promise.all([
-      store.dispatch('usersFetch'),
-      store.dispatch('filmsFetch'),
-      store.dispatch('channelsFetch'),
-      store.dispatch('categoriesFetch')
-    ])
+    store.dispatch('usersFetch')
+    store.dispatch('filmsFetch')
+    store.dispatch('channelsFetch')
+    store.dispatch('categoriesFetch')
   }
 }).$mount('#app')

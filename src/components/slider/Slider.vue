@@ -77,12 +77,15 @@ export default {
     }
   },
   mounted () {
-    window.onresize = () => {
+    $(window).on('resize', () => {
       this.sliderLock = true
       $(this.$el).find('.films-slider__wrap').animate({ scrollLeft: 0 }, 300, () => {
         this.sliderLock = false
       })
-    }
+    })
+  },
+  beforeDestroy () {
+    $(window).off('resize')
   }
 }
 </script>
