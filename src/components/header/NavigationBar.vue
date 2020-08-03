@@ -37,6 +37,7 @@ export default {
             font-weight: 500
             font-size: 28px
             color: $color-dark-grey
+            border-bottom: 2px solid transparent
             &--active
                 border-bottom: 2px solid #E5261E
                 color: #E5261E
