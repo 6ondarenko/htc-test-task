@@ -35,14 +35,6 @@
                         :film="film"
                         :to="{name: 'Film', params: { film_id: film.film_id }}"
                 />
-                <FilmTile
-                        v-for="(film, i) in items"
-                        :key="film.film_id + i + 100"
-                        class="films-slider__item slide"
-                        tag="li"
-                        :film="film"
-                        :to="{name: 'Film', params: { film_id: film.film_id }}"
-                />
             </ul>
         </div>
     </div>
