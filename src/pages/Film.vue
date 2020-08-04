@@ -48,11 +48,19 @@
                         </Button>
                     </div>
                 </div>
-                <div class="comments-list">
-                    <transition-group name="fade" tag="ul" class="comments-list__wrap">
+                <div class="comments-list" v-observe-visibility="{
+                    callback: visibilityChanged,
+                    intersection: {
+                        root: null,
+                        rootMargin: '',
+                        threshold: 0.5
+                    }
+                }">
+                    <!--<transition-group name="fade" tag="ul" class="comments-list__wrap">--><ul class="comments-list__wrap">
                         <li
+                                :style="'animation-delay: 0.' + i + 's'"
                                 class="comment comments-list__item"
-                                v-for="comment in filmCommentsDesc"
+                                v-for="(comment, i) in filmCommentsDesc"
                                 :key="comment.comment_id"
                                 :id="comment.comment_id"
                         >
@@ -74,7 +82,7 @@
                             <div class="comment__author">{{getUserNameById(comment.user_id)}}</div>
                             <div class="comment__txt">{{comment.text}}</div>
                         </li>
-                    </transition-group>
+                    <!--</transition-group>--></ul>
                 </div>
             </div>
         </div>
@@ -127,6 +135,12 @@ export default {
     }
   },
   methods: {
+    visibilityChanged (isVisible) {
+      if (isVisible) {
+        const el = document.querySelector('.comments-list')
+        el.classList.add('comments-list--animate')
+      }
+    },
     getUserNameById (id) {
       const user = this.$store.getters.getUserById(id)
       return user ? user.name : 'Гость'
@@ -301,6 +315,8 @@ export default {
             right: -190px
 
     .comments-list
+        opacity: 0
+        transition: .2s ease opacity
         &__item
             position: relative
             margin-bottom: 16px
@@ -309,13 +325,17 @@ export default {
             margin: 0 auto 0
             width: 780px
             position: relative
+        &--animate
+            opacity: 1
+            .comment
+                animation: comment .2s ease 0s 1
 
     .comment
         box-sizing: border-box
         padding: 16px
         background-color: #F2F2F2
         border-radius: 8px
-        transform: translateY(0)
+        transform: translateX(0)
         opacity: 1
         transition: .2s ease all
 
@@ -347,6 +367,14 @@ export default {
             font-weight: normal
             font-size: 16px
             line-height: 19px
+
+    @keyframes comment
+        0%
+            opacity: 0
+            transform: translateX(100%)
+        100%
+            opacity: 1
+            transform: translateX(0)
 
     @media (max-width: 480px)
         .film-page

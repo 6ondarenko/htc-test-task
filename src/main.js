@@ -8,6 +8,9 @@ import filters from '@/plugins/filters'
 import store from '@/store/index'
 import firebase from 'firebase/app'
 import vuescroll from 'vuescroll'
+import VueObserveVisibility from 'vue-observe-visibility'
+
+Vue.use(VueObserveVisibility)
 
 // Add the Firebase products that you want to use
 import 'firebase/auth'
