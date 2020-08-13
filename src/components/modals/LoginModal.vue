@@ -4,7 +4,7 @@
             <div
                     class="overlay"
             ></div>
-            <div class="login-modal__body">
+            <form class="login-modal__body" @submit.prevent>
                 <div
                         class="login-modal__close-btn"
                         @click.self="closeModal"
@@ -43,11 +43,12 @@
                         @click="loginExecute"
                         class="button--accent"
                         :loading="loading"
+                        type="submit"
                     >
                         Войти
                     </Button>
                 </div>
-            </div>
+            </form>
         </div>
     </transition>
 </template>
@@ -69,6 +70,9 @@ export default {
     }
   },
   methods: {
+    keyPressEnterHandler (e) {
+      console.log(e)
+    },
     closeModal () {
       this.$store.commit('loginModalHide')
     },
@@ -102,9 +106,6 @@ export default {
     active (to) {
       this.checkModalActivity(to)
     }
-  },
-  mounted () {
-    this.checkModalActivity(this.active)
   }
 }
 </script>
@@ -181,7 +182,8 @@ export default {
         &__field
             margin-top: 24px
     .checkbox
-        display: none
+        position: absolute
+        opacity: 0
         & + .checkbox-label
             .checkbox-label__icon
                 display: flex
