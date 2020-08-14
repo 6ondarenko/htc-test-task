@@ -1,20 +1,19 @@
 <template>
-    <input
-        :type="typeComputed"
-        :class="{input: true, 'input--single-line': singleLine}"
-        v-model.lazy="inputVal"
-        @change="changeHandler"
-        @blur="changeHandler"
-    />
+  <input
+    :type="typeComputed"
+    :class="{ input: true, 'input--single-line': singleLine }"
+    v-model.lazy="inputVal"
+    @change="changeHandler"
+    @blur="changeHandler"
+  />
 </template>
-
 <script>
 export default {
-  name: 'TextField',
+  name: "TextField",
   props: {
     value: {
       type: String,
-      default: ''
+      default: ""
     },
     singleLine: {
       type: Boolean,
@@ -26,36 +25,39 @@ export default {
     }
   },
   computed: {
-    typeComputed () {
-      if (this.password) { return 'password' } else { return 'text' }
+    typeComputed() {
+      if (this.password) {
+        return "password";
+      } else {
+        return "text";
+      }
     },
     inputVal: {
       get() {
         return this.value;
       },
       set(val) {
-        this.$emit('input', val);
+        this.$emit("input", val);
       }
     }
   },
   methods: {
-    changeHandler () {
-      this.$emit('update')
+    changeHandler() {
+      this.$emit("update");
     }
   }
-}
+};
 </script>
-
 <style lang="sass">
-    .input
-        font-family: Rubik, default sans-serif
-        box-sizing: border-box
-        font-weight: normal
-        font-size: 16px
-        padding: 6px 0
-        &--single-line
-            width: 100%
-            outline: none
-            border: none
-            border-bottom: 1px solid $color-dark-grey
+.input
+  font-family: Rubik, default sans-serif
+  box-sizing: border-box
+  font-weight: normal
+  font-size: 16px
+  padding: 6px 0
+  &--single-line
+    width: 100%
+    outline: none
+    border: none
+    border-bottom: 1px solid $color-dark-grey
 </style>

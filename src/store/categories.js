@@ -1,4 +1,4 @@
-import firebase from 'firebase'
+import firebase from "firebase";
 
 export default {
   state: {
@@ -6,21 +6,24 @@ export default {
   },
   getters: {
     getCategoriesAll: state => state.categories,
-    getCategoryById: state => id => state.categories.find(i => i.category_id.toString() === id.toString()),
+    getCategoryById: state => id =>
+      state.categories.find(i => i.category_id.toString() === id.toString())
   },
   mutations: {
     categoriesAdd: (state, film) => {
-      state.categories.push(film)
+      state.categories.push(film);
     }
   },
   actions: {
-    categoriesFetch ({ commit }) {
-      const db = firebase.firestore()
-      db.collection('categories').get().then(snapshot => {
-        snapshot.forEach(doc => {
-          commit('categoriesAdd', { ...doc.data(), category_id: doc.id })
-        })
-      })
-    },
+    categoriesFetch({ commit }) {
+      const db = firebase.firestore();
+      db.collection("categories")
+        .get()
+        .then(snapshot => {
+          snapshot.forEach(doc => {
+            commit("categoriesAdd", { ...doc.data(), category_id: doc.id });
+          });
+        });
+    }
   }
-}
+};

@@ -1,17 +1,17 @@
 export default {
   state: {
-    search: ''
+    search: ""
   },
   getters: {
     getSearch: state => state.search
   },
   mutations: {
-    searchReset (state) {
-      state.search = ''
+    searchReset(state) {
+      state.search = "";
     },
-    searchSet (state, payload) {
-      state.search = payload
+    searchSet(state, payload) {
+      state.search = payload;
     }
   },
   actions: {}
-}
+};
