@@ -1,13 +1,13 @@
-import Vue from "vue";
-import Vuex from "vuex";
-import users from "@/store/users";
-import films from "@/store/films";
-import search from "@/store/search";
-import categories from "@/store/categories";
-import channels from "@/store/channels";
-import loginModal from "@/store/loginModal";
+import Vue from 'vue'
+import Vuex from 'vuex'
+import users from '@/store/users'
+import films from '@/store/films'
+import search from '@/store/search'
+import categories from '@/store/categories'
+import channels from '@/store/channels'
+import loginModal from '@/store/loginModal'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
@@ -20,10 +20,10 @@ export default new Vuex.Store({
   },
   mutations: {
     globalScrollbarSet: (state, flag) => {
-      state.globalScrollbar = flag;
+      state.globalScrollbar = flag
     },
     globalScrollbarYSet: (state, payload) => {
-      state.globalScrollbarY = payload;
+      state.globalScrollbarY = payload
     }
   },
   modules: {
@@ -34,4 +34,4 @@ export default new Vuex.Store({
     loginModal,
     channels
   }
-});
+})

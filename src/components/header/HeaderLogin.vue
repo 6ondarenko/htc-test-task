@@ -16,13 +16,13 @@
           userName
         }}</span>
         <div class="user-info__field-input">
-          <TextField v-model="userName" single-line @update="changeName" />
+          <TextField v-model="userName" :single-line="true" @update="changeName" />
         </div>
       </div>
       <Button
         class="button--logout button--accent-flat"
         @click="logout"
-        text
+        :text="true"
         :loading="loading"
       >
         Выйти
@@ -32,60 +32,60 @@
 </template>
 <script>
 export default {
-  name: "HeaderLogin",
-  data() {
+  name: 'HeaderLogin',
+  data () {
     return {
       loading: false,
       edit: false,
       uid: null
-    };
+    }
   },
   computed: {
-    currentUser() {
-      return this.$store.getters.getUsersCurrentUser;
+    currentUser () {
+      return this.$store.getters.getUsersCurrentUser
     },
     userName: {
-      get() {
-        return this.currentUser.name;
+      get () {
+        return this.currentUser.name
       },
-      set(name) {
-        const userData = { name };
-        this.$store.dispatch("usersUpdateUserInfo", userData);
+      set (name) {
+        const userData = { name }
+        this.$store.dispatch('usersUpdateUserInfo', userData)
       }
     }
   },
   methods: {
-    editName(e) {
-      const textWidth = e.target.offsetWidth + "px";
-      const parent = e.target.parentNode;
-      const input = parent.querySelector("input");
-      this.edit = true;
+    editName (e) {
+      const textWidth = e.target.offsetWidth + 'px'
+      const parent = e.target.parentNode
+      const input = parent.querySelector('input')
+      this.edit = true
       setTimeout(() => {
-        input.focus();
-        input.style.width = textWidth;
-      }, 0);
+        input.focus()
+        input.style.width = textWidth
+      }, 0)
     },
-    changeName() {
-      this.edit = false;
+    changeName () {
+      this.edit = false
     },
-    showLoginModal() {
-      this.$store.commit("loginModalShow");
+    showLoginModal () {
+      this.$store.commit('loginModalShow')
     },
-    logout() {
-      this.loading = true;
+    logout () {
+      this.loading = true
       this.$store
-        .dispatch("usersFirebaseLoginOut")
+        .dispatch('usersFirebaseLoginOut')
         .then(() => {
-          this.$store.commit("usersSetCurrentUserId", null);
-          this.loading = false;
+          this.$store.commit('usersSetCurrentUserId', null)
+          this.loading = false
         })
         .catch(error => {
-          alert(error.message);
-          this.loading = false;
-        });
+          alert(error.message)
+          this.loading = false
+        })
     }
   }
-};
+}
 </script>
 <style lang="sass">
 .header-login
@@ -98,7 +98,7 @@ export default {
 .user-info
   &__field--edit
     .user-info__field-txt
-      display: none
+    display: none
     .user-info__field-input
       display: block
   &__field-txt

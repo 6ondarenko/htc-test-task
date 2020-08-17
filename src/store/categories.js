@@ -1,4 +1,4 @@
-import firebase from "firebase";
+import firebase from 'firebase'
 
 export default {
   state: {
@@ -11,19 +11,19 @@ export default {
   },
   mutations: {
     categoriesAdd: (state, film) => {
-      state.categories.push(film);
+      state.categories.push(film)
     }
   },
   actions: {
-    categoriesFetch({ commit }) {
-      const db = firebase.firestore();
-      db.collection("categories")
+    categoriesFetch ({ commit }) {
+      const db = firebase.firestore()
+      db.collection('categories')
         .get()
         .then(snapshot => {
           snapshot.forEach(doc => {
-            commit("categoriesAdd", { ...doc.data(), category_id: doc.id });
-          });
-        });
+            commit('categoriesAdd', { ...doc.data(), category_id: doc.id })
+          })
+        })
     }
   }
-};
+}

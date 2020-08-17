@@ -4,7 +4,7 @@
       <TextField single-line placeholder="Поиск..." v-model="search" />
     </div>
     <Button class="header-searchform__btn button--accent-flat" text
-      >Найти
+    >Найти
     </Button>
     <div class="header-searchform__btn-mob">
       <svg
@@ -21,18 +21,18 @@
 </template>
 <script>
 export default {
-  name: "HeaderSearchform",
+  name: 'HeaderSearchform',
   computed: {
     search: {
-      get() {
-        return this.$store.getters.getSearch;
+      get () {
+        return this.$store.getters.getSearch
       },
-      set(search) {
-        this.$store.commit("searchSet", search);
+      set (search) {
+        this.$store.commit('searchSet', search)
       }
     }
   }
-};
+}
 </script>
 <style lang="sass">
 .header-searchform

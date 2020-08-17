@@ -24,26 +24,31 @@
   </div>
 </template>
 <script>
+import FilmTile from '../components/films/FilmTile'
+
 export default {
-  name: "Category",
-  props: ["category_id"],
+  name: 'Category',
+  components: {
+    FilmTile
+  },
+  props: ['category_id'],
   computed: {
-    getSearch() {
-      return this.$store.getters.getSearch;
+    getSearch () {
+      return this.$store.getters.getSearch
     },
-    category() {
-      return this.$store.getters.getCategoryById(this.category_id);
+    category () {
+      return this.$store.getters.getCategoryById(this.category_id)
     },
-    films() {
-      const films = this.$store.getters.getFilmsByCategoryId(this.category_id);
-      if (this.getSearch !== "") {
-        const reg = new RegExp(this.getSearch.toString(), "i");
-        return films.filter(film => reg.test(film.name));
+    films () {
+      const films = this.$store.getters.getFilmsByCategoryId(this.category_id)
+      if (this.getSearch !== '') {
+        const reg = new RegExp(this.getSearch.toString(), 'i')
+        return films.filter(film => reg.test(film.name))
       }
-      return films;
+      return films
     }
   }
-};
+}
 </script>
 <style lang="sass">
 .films-tile

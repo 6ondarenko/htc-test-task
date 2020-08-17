@@ -9,23 +9,27 @@
   </vuescroll>
 </template>
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters } from 'vuex'
+import vuescroll from 'vuescroll'
 
 export default {
-  name: "CustomVerticalScroll",
-  data() {
+  name: 'CustomVerticalScroll',
+  components: {
+    vuescroll
+  },
+  data () {
     return {
       renderComponent: true,
       componentKey: 0
-    };
+    }
   },
   computed: {
-    ...mapGetters(["globalScrollbarY", "globalScrollbar"]),
-    globalScrollbarOps() {
+    ...mapGetters(['globalScrollbarY', 'globalScrollbar']),
+    globalScrollbarOps () {
       return {
         vuescroll: {
-          mode: "native",
-          sizeStrategy: "percent",
+          mode: 'native',
+          sizeStrategy: 'percent',
           detectResize: true,
           wheelScrollDuration: 200,
           wheelDirectionReverse: false,
@@ -39,55 +43,55 @@ export default {
           scrollingX: this.globalScrollbar,
           scrollingY: this.globalScrollbar,
           speed: 0,
-          easing: "easeInOutQuad",
-          verticalNativeBarPos: "right"
+          easing: 'easeInOutQuad',
+          verticalNativeBarPos: 'right'
         },
         rail: {
-          background: "#f2f2f2",
-          size: "4px",
-          specifyBorderRadius: "2px",
+          background: '#f2f2f2',
+          size: '4px',
+          specifyBorderRadius: '2px',
           opacity: 1,
-          gutterOfEnds: "0",
-          gutterOfSide: "0",
+          gutterOfEnds: '0',
+          gutterOfSide: '0',
           keepShow: false,
-          border: "2px solid #f2f2f2"
+          border: '2px solid #f2f2f2'
         },
         bar: {
-          background: "#bdbdbd",
-          size: "4px",
+          background: '#bdbdbd',
+          size: '4px',
           showDelay: 0,
           onlyShowBarOnScroll: false,
           keepShow: true,
           opacity: 1,
           hoverStyle: false,
-          specifyBorderRadius: "2px",
+          specifyBorderRadius: '2px',
           minSize: 0,
           disable: false
         },
         scrollButton: {
           enable: false,
-          background: "#f2f2f2",
+          background: '#f2f2f2',
           opacity: 1,
           step: 180,
           mousedownStep: 30
         }
-      };
+      }
     }
   },
   methods: {
-    forceRerender() {
-      this.$refs.vuescroll.mergedOptions = this.globalScrollbarOps;
-      this.$refs.vuescroll.refresh();
+    forceRerender () {
+      this.$refs.vuescroll.mergedOptions = this.globalScrollbarOps
+      this.$refs.vuescroll.refresh()
     }
   },
   watch: {
-    globalScrollbar() {
-      const y = this.$refs.vuescroll.getPosition().scrollTop;
-      this.$store.commit("globalScrollbarYSet", y);
-      this.forceRerender();
+    globalScrollbar () {
+      const y = this.$refs.vuescroll.getPosition().scrollTop
+      this.$store.commit('globalScrollbarYSet', y)
+      this.forceRerender()
     }
   }
-};
+}
 </script>
 <style>
 .__panel {

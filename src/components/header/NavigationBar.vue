@@ -29,7 +29,7 @@
 </template>
 <script>
 export default {
-  name: "NavigationBar"
+  name: 'NavigationBar'
 };
 </script>
 <style lang="sass">

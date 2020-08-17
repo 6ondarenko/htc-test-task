@@ -5,7 +5,7 @@
     </div>
     <div class="categories-tile__wrap">
       <ul class="categories-tile__list">
-        <router-link
+        <CategoryTile
           tag="li"
           class="categories-tile__item category-tile"
           v-for="(category, k) in items"
@@ -14,29 +14,25 @@
             name: 'Category',
             params: { category_id: category.category_id }
           }"
-        >
-          <div
-            class="category-tile__bg"
-            :style="
-              `background-color: ${category.color_1}; background: linear-gradient(136.27deg, ${category.color_1} 8.44%, ${category.color_2} 91.36%);`
-            "
-          ></div>
-          <div class="category-tile__icon">{{ category.icon }}</div>
-          <div class="category-tile__title">{{ category.name }}</div>
-        </router-link>
+          :category="category"
+        />
       </ul>
     </div>
   </div>
 </template>
 <script>
+import CategoryTile from './CategoryTile'
 export default {
-  name: "Categories",
+  name: 'Categories',
+  components: {
+    CategoryTile
+  },
   props: {
     items: {
       type: Array
     }
   }
-};
+}
 </script>
 <style lang="sass">
 .categories-tile

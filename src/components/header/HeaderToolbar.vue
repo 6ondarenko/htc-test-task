@@ -6,9 +6,18 @@
   </div>
 </template>
 <script>
+import HeaderLogo from './HeaderLogo'
+import HeaderSearchForm from './HeaderSearchForm'
+import HeaderLogin from './HeaderLogin'
+
 export default {
-  name: "HeaderToolbar"
-};
+  name: 'HeaderToolbar',
+  components: {
+    HeaderLogo,
+    HeaderSearchForm,
+    HeaderLogin
+  }
+}
 </script>
 <style lang="sass">
 .header-toolbar

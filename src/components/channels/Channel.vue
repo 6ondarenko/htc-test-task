@@ -21,30 +21,30 @@
 </template>
 <script>
 export default {
-  name: "Channel",
+  name: 'Channel',
   props: {
     channel: {
       type: Object
     }
   },
   computed: {
-    programs() {
+    programs () {
       const programs = this.channel.programs.length
         ? this.channel.programs
-        : [];
+        : []
       const compare = (a, b) => {
         if (a.time < b.time) {
-          return -1;
+          return -1
         }
         if (a.time > b.time) {
-          return 1;
+          return 1
         }
-        return 0;
-      };
-      return programs.sort(compare);
+        return 0
+      }
+      return programs.sort(compare)
     }
   }
-};
+}
 </script>
 <style lang="sass">
 .channel

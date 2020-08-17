@@ -4,9 +4,14 @@
   </header>
 </template>
 <script>
+import HeaderToolbar from './HeaderToolbar'
+
 export default {
-  name: "Header"
-};
+  name: 'Header',
+  components: {
+    HeaderToolbar
+  }
+}
 </script>
 <style lang="sass">
 .header

@@ -8,8 +8,8 @@
 </template>
 <script>
 export default {
-  name: "HeaderLogo"
-};
+  name: 'HeaderLogo'
+}
 </script>
 <style lang="sass" scoped>
 .header-logo

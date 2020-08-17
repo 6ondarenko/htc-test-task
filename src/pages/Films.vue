@@ -3,33 +3,40 @@
     <Header />
     <NavigationBar class="header__nav" />
     <Slider class="page-videos__slider" :items="getFilmsAll"
-      >🔥 Новинки
+    >🔥 Новинки
     </Slider>
     <Categories class="page-videos__categories-tile" :items="getCategoriesAll"
-      >Жанры
+    >Жанры
     </Categories>
   </div>
 </template>
 <script>
+import Categories from '../components/categories/Categories'
+import Slider from '../components/slider/Slider'
+
 export default {
-  name: "Home",
+  name: 'Home',
+  components: {
+    Categories,
+    Slider
+  },
   computed: {
-    getSearch() {
-      return this.$store.getters.getSearch;
+    getSearch () {
+      return this.$store.getters.getSearch
     },
-    getFilmsAll() {
-      const films = this.$store.getters.getFilmsAll;
-      if (this.getSearch !== "") {
-        const reg = new RegExp(this.getSearch.toString(), "i");
-        return films.filter(film => reg.test(film.name));
+    getFilmsAll () {
+      const films = this.$store.getters.getFilmsAll
+      if (this.getSearch !== '') {
+        const reg = new RegExp(this.getSearch.toString(), 'i')
+        return films.filter(film => reg.test(film.name))
       }
-      return films;
+      return films
     },
-    getCategoriesAll() {
-      return this.$store.getters.getCategoriesAll;
+    getCategoriesAll () {
+      return this.$store.getters.getCategoriesAll
     }
   }
-};
+}
 </script>
 <style lang="sass">
 .page-videos

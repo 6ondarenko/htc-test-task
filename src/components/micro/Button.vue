@@ -38,7 +38,7 @@
 </template>
 <script>
 export default {
-  name: "Button",
+  name: 'Button',
   props: {
     text: {
       type: Boolean,
@@ -50,12 +50,12 @@ export default {
     }
   },
   methods: {
-    click() {
-      if (this.loading) return;
-      this.$emit("click");
+    click () {
+      if (this.loading) return
+      this.$emit('click')
     }
   }
-};
+}
 </script>
 <style lang="sass">
 .button

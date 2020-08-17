@@ -20,7 +20,7 @@
             stroke-width="3"
             stroke-linecap="round"
             stroke-linejoin="round"
-          />
+          ></path>
         </svg>
       </router-link>
       <div class="film-info__wrap">
@@ -76,7 +76,7 @@
               @click="saveComment"
               class="button--accent comments-form__button"
               type="submit"
-              >Опубликовать
+            >Опубликовать
             </Button>
           </div>
         </form>
@@ -139,109 +139,109 @@
   </div>
 </template>
 <script>
-import firebase from "firebase/app";
+import firebase from 'firebase/app'
 
 export default {
-  name: "Film",
-  props: ["film_id"],
-  data() {
+  name: 'Film',
+  props: ['film_id'],
+  data () {
     return {
-      commentText: ""
-    };
+      commentText: ''
+    }
   },
   computed: {
-    film() {
-      return this.$store.getters.getFilmById(this.film_id);
+    film () {
+      return this.$store.getters.getFilmById(this.film_id)
     },
-    linkedCategories() {
-      const categories = [];
+    linkedCategories () {
+      const categories = []
       if (this.film) {
         this.film.categories.forEach(c => {
-          const category = this.$store.getters.getCategoryById(c.category_id);
-          if (category) categories.push(category);
-        });
+          const category = this.$store.getters.getCategoryById(c.category_id)
+          if (category) categories.push(category)
+        })
       }
-      return categories;
+      return categories
     },
-    linkedCategoriesString() {
-      return this.linkedCategories.map(category => category.name).join(", ");
+    linkedCategoriesString () {
+      return this.linkedCategories.map(category => category.name).join(', ')
     },
-    filmCommentsDesc() {
+    filmCommentsDesc () {
       const compare = (a, b) => {
         if (a.timestamp > b.timestamp) {
-          return -1;
+          return -1
         }
         if (a.timestamp < b.timestamp) {
-          return 1;
+          return 1
         }
-        return 0;
-      };
-      const comments = this.film.comments;
-      return comments.sort(compare);
+        return 0
+      }
+      const comments = this.film.comments
+      return comments.sort(compare)
     },
-    currentUserId() {
-      return this.$store.getters.getUsersCurrentUserId;
+    currentUserId () {
+      return this.$store.getters.getUsersCurrentUserId
     }
   },
   methods: {
-    visibilityChanged(isVisible) {
+    visibilityChanged (isVisible) {
       if (isVisible) {
-        const el = document.querySelector(".comments-list");
-        el.classList.add("comments-list--animate");
+        const el = document.querySelector('.comments-list')
+        el.classList.add('comments-list--animate')
       }
     },
-    getUserNameById(id) {
-      const user = this.$store.getters.getUserById(id);
-      return user ? user.name : "Гость";
+    getUserNameById (id) {
+      const user = this.$store.getters.getUserById(id)
+      return user ? user.name : 'Гость'
     },
-    saveComment() {
-      if (!this.commentText) return;
+    saveComment () {
+      if (!this.commentText) return
       let comment = {
         user_id: this.currentUserId,
         text: this.commentText,
         timestamp: Date.now()
-      };
-      const db = firebase.firestore();
-      db.collection("films")
+      }
+      const db = firebase.firestore()
+      db.collection('films')
         .doc(this.film.film_id)
-        .collection("comments")
+        .collection('comments')
         .add(comment)
         .then(docRef => {
-          comment.comment_id = docRef.id;
+          comment.comment_id = docRef.id
           const updatedFilm = {
             ...this.film,
             comments: [...this.film.comments, comment]
-          };
-          this.$store.commit("filmsUpdateFilm", updatedFilm);
-          this.commentText = "";
+          }
+          this.$store.commit('filmsUpdateFilm', updatedFilm)
+          this.commentText = ''
         })
         .catch(e => {
-          alert(e.message);
-        });
+          alert(e.message)
+        })
     },
-    deleteComment(id) {
-      const db = firebase.firestore();
+    deleteComment (id) {
+      const db = firebase.firestore()
       const updatedFilm = {
         ...this.film,
         comments: this.film.comments.filter(c => c.comment_id !== id)
-      };
-      const commentElement = document.getElementById(id);
-      commentElement.classList.add("comment--deleted");
-      db.collection("films")
+      }
+      const commentElement = document.getElementById(id)
+      commentElement.classList.add('comment--deleted')
+      db.collection('films')
         .doc(this.film.film_id)
-        .collection("comments")
+        .collection('comments')
         .doc(id)
         .delete()
         .then(() => {
-          this.$store.commit("filmsUpdateFilm", updatedFilm);
+          this.$store.commit('filmsUpdateFilm', updatedFilm)
         })
         .catch(e => {
-          commentElement.classList.remove("comment--deleted");
-          alert(e.message);
-        });
+          commentElement.classList.remove('comment--deleted')
+          alert(e.message)
+        })
     }
   }
-};
+}
 </script>
 <style lang="sass">
 .film-page

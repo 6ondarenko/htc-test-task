@@ -1,7 +1,7 @@
 <template>
   <input
     :type="typeComputed"
-    :class="{ input: true, 'input--single-line': singleLine }"
+    :class="{ 'input': true, 'input--single-line': singleLine }"
     v-model.lazy="inputVal"
     @change="changeHandler"
     @blur="changeHandler"
@@ -9,11 +9,11 @@
 </template>
 <script>
 export default {
-  name: "TextField",
+  name: 'TextField',
   props: {
     value: {
       type: String,
-      default: ""
+      default: ''
     },
     singleLine: {
       type: Boolean,
@@ -25,28 +25,28 @@ export default {
     }
   },
   computed: {
-    typeComputed() {
+    typeComputed () {
       if (this.password) {
-        return "password";
+        return 'password'
       } else {
-        return "text";
+        return 'text'
       }
     },
     inputVal: {
-      get() {
-        return this.value;
+      get () {
+        return this.value
       },
-      set(val) {
-        this.$emit("input", val);
+      set (val) {
+        this.$emit('input', val)
       }
     }
   },
   methods: {
-    changeHandler() {
-      this.$emit("update");
+    changeHandler () {
+      this.$emit('update')
     }
   }
-};
+}
 </script>
 <style lang="sass">
 .input

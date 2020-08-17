@@ -7,12 +7,12 @@
         <div class="login-modal__top">
           <div class="login-modal__title">Вход</div>
           <div class="login-modal__field">
-            <TextField single-line v-model="login" placeholder="Логин" />
+            <TextField :single-line="true" v-model="login" placeholder="Логин" />
           </div>
           <div class="login-modal__field">
             <TextField
-              single-line
-              password
+              :single-line="true"
+              :password="true"
               v-model="password"
               placeholder="Пароль"
             />
@@ -58,69 +58,68 @@
     </div>
   </transition>
 </template>
-
 <script>
+import TextField from '../micro/TextField'
 export default {
-  name: "LoginModal",
-  data() {
+  name: 'LoginModal',
+  components: {
+    TextField
+  },
+  data () {
     return {
-      login: "",
-      password: "",
+      login: '',
+      password: '',
       remember: false,
       loading: false
-    };
+    }
   },
   computed: {
-    active() {
-      return this.$store.getters.loginModalActive;
+    active () {
+      return this.$store.getters.loginModalActive
     }
   },
   methods: {
-    keyPressEnterHandler(e) {
-      console.log(e);
+    closeModal () {
+      this.$store.commit('loginModalHide')
     },
-    closeModal() {
-      this.$store.commit("loginModalHide");
+    resetFields () {
+      this.login = this.password = ''
+      this.remember = false
     },
-    resetFields() {
-      this.login = this.password = "";
-      this.remember = false;
-    },
-    loginExecute() {
-      this.loading = true;
+    loginExecute () {
+      this.loading = true
       this.$store
-        .dispatch("usersFirebaseLogin", {
+        .dispatch('usersFirebaseLogin', {
           login: this.login,
           password: this.password,
           remember: this.remember
         })
         .then(result => {
-          this.$store.commit("usersSetCurrentUserId", result.user.uid);
-          this.resetFields();
-          this.closeModal();
-          this.loading = false;
+          this.$store.commit('usersSetCurrentUserId', result.user.uid)
+          this.resetFields()
+          this.closeModal()
+          this.loading = false
         })
         .catch(e => {
-          alert(e.message);
-          this.loading = false;
-        });
+          alert(e.message)
+          this.loading = false
+        })
     },
-    checkModalActivity(flag) {
+    checkModalActivity (flag) {
       if (flag) {
-        this.$store.commit("globalScrollbarSet", false);
+        this.$store.commit('globalScrollbarSet', false)
       } else {
-        this.$store.commit("globalScrollbarSet", true);
+        this.$store.commit('globalScrollbarSet', true)
       }
     }
   },
   watch: {
-    active(to) {
-      this.checkModalActivity(to);
+    active (to) {
+      this.checkModalActivity(to)
     }
   }
-};
+}
 </script>
-
 <style lang="sass">
 .overlay
   position: fixed

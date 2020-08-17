@@ -2,9 +2,7 @@
   <router-link class="category-tile" :tag="tag" :to="to">
     <div
       class="category-tile__bg"
-      :style="
-        `background-color: ${category.color_1}; background: linear-gradient(136.27deg, ${category.color_1} 8.44%, ${category.color_2} 91.36%);`
-      "
+      :style="`background-color: ${category['color_1']}; background: linear-gradient(136.27deg, ${category['color_1']} 8.44%, ${category['color_2']} 91.36%);`"
     ></div>
     <div class="category-tile__icon">{{ category.icon }}</div>
     <div class="category-tile__title">{{ category.name }}</div>
@@ -12,11 +10,11 @@
 </template>
 <script>
 export default {
-  name: "CategoriesTile",
+  name: 'CategoryTile',
   props: {
     tag: {
       type: String,
-      default: "div"
+      default: 'div'
     },
     category: {
       type: Object
@@ -25,7 +23,7 @@ export default {
       type: Object
     }
   }
-};
+}
 </script>
 <style lang="sass">
 .category-tile

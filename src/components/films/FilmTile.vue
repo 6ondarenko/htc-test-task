@@ -6,19 +6,24 @@
     >
       <div class="film-tile__overlay"></div>
       <FilmDescriptionScroll class="film-tile__desc"
-        >{{ film.description }}
+      >{{ film.description }}
       </FilmDescriptionScroll>
     </div>
     <div class="film-tile__text">{{ film.name }}</div>
   </router-link>
 </template>
 <script>
+import FilmDescriptionScroll from '../scroll/FilmDescriptionScroll'
+
 export default {
-  name: "FilmTile",
+  components: {
+    FilmDescriptionScroll
+  },
+  name: 'FilmTile',
   props: {
     tag: {
       type: String,
-      default: "div"
+      default: 'div'
     },
     film: {
       type: Object
@@ -27,7 +32,7 @@ export default {
       type: Object
     }
   }
-};
+}
 </script>
 <style lang="sass">
 .film-tile

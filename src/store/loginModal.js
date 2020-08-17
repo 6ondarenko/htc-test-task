@@ -6,12 +6,12 @@ export default {
     loginModalActive: state => state.loginModalActive
   },
   mutations: {
-    loginModalShow(state) {
-      state.loginModalActive = true;
+    loginModalShow (state) {
+      state.loginModalActive = true
     },
-    loginModalHide(state) {
-      state.loginModalActive = false;
+    loginModalHide (state) {
+      state.loginModalActive = false
     }
   },
   actions: {}
-};
+}
