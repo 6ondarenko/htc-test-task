@@ -98,7 +98,7 @@ export default {
 .user-info
   &__field--edit
     .user-info__field-txt
-    display: none
+      display: none
     .user-info__field-input
       display: block
   &__field-txt
